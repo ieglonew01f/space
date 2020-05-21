@@ -1,0 +1,29 @@
+- @posts = Post.all.order("id DESC")
+= stylesheet_link_tag "login"
+= javascript_include_tag 'https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js'
+
+#launch-to-space
+  .row
+    .col-lg-6.first-col
+      .brand
+        %img{:src => "/site/logo-main.png"}
+      .login-options
+        %p Join now and get started.
+        %button.btn.btn-outline-primary{:type => "button"} Login With Gmail
+    .col-lg-4.second-col
+      - @posts.each do |p|
+        .post
+          .media
+            %img.mr-3{:src => "https://scontent.fgau1-1.fna.fbcdn.net/v/t1.0-1/p320x320/75521927_10216026571044241_2658697791173296128_n.jpg?_nc_cat=107&_nc_sid=dbb9e7&_nc_oc=AQn6HJONLNkzZCFbGRfCmLYNNhcU9nFN9KcNOfgRhm2Lksn4XPyqyV8XcgAfkjJqc4XFnrTVXnVR1Zyq1mNCwbPU&_nc_ht=scontent.fgau1-1.fna&_nc_tp=6&oh=754840b08e23cf1c842256fd936537d3&oe=5EE9B413"}/
+            .media-body
+              %h5.mt-0
+                = p.user.name
+              %p
+                = p.content
+              .stats
+                %span.likes
+                  %i.icon{"data-feather" => "heart"}
+                  500 Likes
+
+:javascript
+  feather.replace()

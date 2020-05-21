@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Space</title>
+    <%= Gon::Base.render_data %>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= javascript_pack_tag 'application'%>
+    <%= javascript_pack_tag 'app' %>
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>

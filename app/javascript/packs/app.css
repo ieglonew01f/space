@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
+
+body {
+    background: #16202c;
+    color: #FFF;
+    font-family: 'Nunito', sans-serif;
+}
+
+.main-app,
+.main-app .main-row {
+    height: 100%;
+}
+
+.center-col {
+    border-left: 1px solid #38444c;
+    border-right: 1px solid #38444c;
+    height: 100%;
+    color: #FFF;
+}
+
+.ant-progress-text {
+    color: #FFF !important;
+}
+
+.danger {
+    color: #f50;
+}
+
+.center-col .mast {
+    color: #FFF;
+    padding: 15px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    font-weight: 900;
+}
+
+.list-unstyled {
+    list-style: none;
+}
+
+.side-menu ul {
+    float: right;
+    margin-right: 35px;
+    position: relative;
+    top: 20px;
+}
+
+.side-menu ul li a {
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 50px;
+    color: #FFF;
+}
+
+.side-menu ul li a .anticon {
+    margin-right: 10px;
+}
+
+.side-menu ul li a:hover {
+    background: #365779;
+    -webkit-transition: background-color 100ms linear;
+    -ms-transition: background-color 100ms linear;
+    transition: background-color 100ms linear;
+}
+
+.side-menu ul li a {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.side-menu ul li {
+    margin: 35px 0 20px;
+}

@@ -1,0 +1,13 @@
+.bio {
+    padding: 15px;
+    border-bottom: 1px solid #38444b;
+}
+
+.profile-container .mast {
+    margin-bottom: 0;
+    padding-bottom: 0 !important;
+}
+
+.bio .stats {
+    margin-right: 10px;
+}
