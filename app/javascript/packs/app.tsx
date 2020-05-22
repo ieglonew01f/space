@@ -28,6 +28,11 @@ const App = () => (
       <HashRouter>
         <Row className="main-row">
           <Col span={7}>
+            <div className="logo">
+              <a href="/#">
+                <img width="50" src="/site/logo-small.png"></img>
+              </a>
+            </div>
             <SideMenu></SideMenu>
           </Col>
           <Col span={9}>

@@ -9,7 +9,9 @@ class EventBroadcastJob < ApplicationJob
 
   def render_event(event)
     @post = event
-    # ApplicationController.renderer.render(partial: 'events/event', locals: { event: event })
-    Rabl::Renderer.json(@post, 'posts/show', :view_path => 'app/views')
+
+    if !@post.content.blank?
+      Rabl::Renderer.json(@post, 'posts/show', :view_path => 'app/views')
+    end
   end
 end

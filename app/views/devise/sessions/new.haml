@@ -9,7 +9,7 @@
         %img{:src => "/site/logo-main.png"}
       .login-options
         %p Join now and get started.
-        %button.btn.btn-outline-primary{:type => "button"} Login With Gmail
+        %a.btn.btn-outline-primary{:type => "button", :href => "/users/auth/google_oauth2"} Login With Gmail
     .col-lg-4.second-col
       - @posts.each do |p|
         .post

@@ -6,9 +6,23 @@ body {
     font-family: 'Nunito', sans-serif;
 }
 
+.hide {
+    display: none !important;
+}
+
 .main-app,
 .main-app .main-row {
     height: 100%;
+}
+
+.main-app .logo {
+    float: right;
+}
+
+.main-app .logo img {
+    width: 100px;
+    position: relative;
+    right: 79px;
 }
 
 .center-col {
@@ -40,9 +54,10 @@ body {
 
 .side-menu ul {
     float: right;
-    margin-right: 35px;
+    margin-right: 33px;
     position: relative;
-    top: 20px;
+    top: -5px;
+    clear: both;
 }
 
 .side-menu ul li a {
@@ -58,6 +73,13 @@ body {
 }
 
 .side-menu ul li a:hover {
+    background: #365779;
+    -webkit-transition: background-color 100ms linear;
+    -ms-transition: background-color 100ms linear;
+    transition: background-color 100ms linear;
+}
+
+.side-menu ul li a.active {
     background: #365779;
     -webkit-transition: background-color 100ms linear;
     -ms-transition: background-color 100ms linear;

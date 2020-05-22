@@ -1,4 +1,4 @@
 object false
 object @post
-attributes :uuid, :content, :content_type
-child(:user) { attributes :name }
+attributes :uuid, :content, :content_type, :image
+child(:user) { attributes :name, :avatar }

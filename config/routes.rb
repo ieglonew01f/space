@@ -7,4 +7,11 @@ Rails.application.routes.draw do
   end
 
   resources :posts
+
+  resources :posts do
+    collection do
+      post 'parse_link'
+    end
+    resources :likes
+  end
 end

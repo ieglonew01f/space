@@ -1,2 +1,2 @@
 object @post
-attributes :uuid, :content, :content_type
+attributes :uuid, :content, :content_type, :image

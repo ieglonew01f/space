@@ -32,9 +32,12 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
-
+.DS_Store
+/public/uploads
+/public/.DS_Store
 /public/packs
 /public/packs-test
+/public/site/.DS_Store
 /node_modules
 /yarn-error.log
 yarn-debug.log*

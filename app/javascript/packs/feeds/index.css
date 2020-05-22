@@ -13,6 +13,23 @@
     font-weight: bolder;
 }
 
+.feed-container .editor .preview img {
+    width: 150px;
+    border: 2px dashed #38444b;
+    padding: 3px;
+}
+
+.feed-container .editor .preview .image-cross {
+    position: relative;
+    bottom: 72px;
+    right: 10px;
+    color: #FFF;
+}
+
+.feed-container .editor .preview .image-cross:hover {
+    color: #1da1f2;
+}
+
 .feed-container .action-bar {
     margin-top: 10px;
 }

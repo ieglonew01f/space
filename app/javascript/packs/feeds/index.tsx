@@ -44,9 +44,9 @@ export class Feeds extends React.Component<Feeds.IProps, Feeds.IState> {
   }
 
   handleReceived(resp) {
+    if (!resp || resp && !resp.message) return;
     let post = JSON.parse(resp.message);
     let { posts } = this.state;
-    console.log(post)
 
     this.setState({ posts: [post, ...posts]})
   }
