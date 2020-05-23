@@ -4,7 +4,7 @@ class ImagePostUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   def default_url(*args)
-    ActionController::Base.helpers.asset_path("/avatars/default.png")
+    ActionController::Base.helpers.asset_path("")
   end
 
   # Use file for local development
@@ -32,7 +32,7 @@ class ImagePostUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
-  process resize_to_fill: [230, 230]
+  process resize_to_fill_overide: [500, 500]
 
   #
   # def scale(width, height)
@@ -41,13 +41,36 @@ class ImagePostUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :thumb do
-    process resize_to_fill: [50, 50]
+    process resize_to_fill_overide: [50, 50]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_whitelist
     %w(jpg jpeg gif png)
+  end
+
+  def resize_to_fill_overide(width, height)
+    if @file.content_type == "image/gif"
+      gif_safe_transform! do |image|
+        image.resize "#{840}x#{620}" # Perform any transformations here.
+      end
+    else
+      # Process other filetypes if necessary.
+      return resize_to_fill(width, height)
+    end
+  end
+  
+  def gif_safe_transform!
+    MiniMagick::Tool::Convert.new do |image|
+      image << @file.path
+      image.coalesce # Remove optimizations so each layer shows the full image.
+  
+      yield image
+  
+      image.layers "Optimize" # Re-optimize the image.
+      image << @file.path
+    end
   end
 
   # Override the filename of the uploaded files:

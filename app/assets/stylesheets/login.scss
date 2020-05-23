@@ -44,16 +44,34 @@ body {
 
         .post {
             .media {
-                img {
+                img.mr-3 {
                     width: 32px;
                     border-radius: 50%;
                 }
 
                 .media-body {
+                    .content-div {
+                        margin-bottom: 15px;
+
+                        img {
+                            border-radius: 5px;
+                        }
+                    }
+
                     h5 {
                         color: #FFF;
                         font-weight: bolder;
                         font-size: 15px;
+
+                        span {
+                            font-size: 13px;
+                            font-weight: bold;
+                            color: #8799a6;
+
+                            svg {
+                                height: 13px;
+                            }
+                        }
                     }
 
                     .stats {

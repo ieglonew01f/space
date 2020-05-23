@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   # GET /posts
@@ -24,6 +25,7 @@ class PostsController < ApplicationController
     @post.content = params[:content]
     @post.content_type = params[:content_type]
     @post.image = params[:image]
+    @post.content_meta = params[:meta]
     @post.uuid = SecureRandom.uuid
     @post.save!
   end
@@ -43,6 +45,10 @@ class PostsController < ApplicationController
   # DELETE /posts/uuid.json
   def destroy
     begin
+      if @post.user.id != current_user.id
+        raise "not allowed"
+      end
+
       @post.destroy!
       success_json(200, I18n.t("api.success"), {})
     rescue Exception => e

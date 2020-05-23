@@ -30,6 +30,15 @@
     color: #1da1f2;
 }
 
+.feed-container .editor .plength {
+    position: relative;
+    top: -3px;
+}
+
+.feed-container .editor .clear-post {
+    margin-right: 10px;
+}
+
 .feed-container .action-bar {
     margin-top: 10px;
 }
@@ -37,6 +46,7 @@
 .feed-container .ant-progress {
     position: relative;
     bottom: 4px;
+    left: 14px;
 }
 
 .feed-container .action-bar button.icon-btn {
@@ -48,6 +58,11 @@
     cursor: pointer;
     border-color: transparent;
     margin-right: 5px;
+}
+
+.feed-container .news-feed {
+    overflow-y: auto;
+    height: 100vh;
 }
 
 .feed-container .news-feed .post-card .icon {
@@ -86,16 +101,30 @@
     margin: 0;
     padding: 0;
     font-size: 15px;
+    display: inline-block;
+}
+
+.feed-container .news-feed .header {
+    height: 22px;
+    width: 100%;
+    display: inline-block;
+}
+
+.feed-container .news-feed .header .action-delete {
+    float: right;
+}
+
+.feed-container .time-ago {
+    font-size: 13px;
+    margin-left: 6px;
+    font-weight: bold;
+    color: #8799a6;
 }
 
 .feed-container .news-feed h4 .stats-mini {
     color: #8395a2;
     font-weight: bold;
     font-size: 13px;
-}
-
-.feed-container .news-feed .content {
-    margin-left: 75px;
 }
 
 .feed-container .news-feed .content img {
@@ -105,6 +134,5 @@
 
 .feed-container .news-feed .post-card {
     border-bottom: 1px solid #38444b;
-    margin-bottom: 25px;
     padding: 15px;
 }

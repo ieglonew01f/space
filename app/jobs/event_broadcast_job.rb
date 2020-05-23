@@ -1,3 +1,5 @@
+include ActionView::Helpers::DateHelper
+
 class EventBroadcastJob < ApplicationJob
   queue_as :default
 
