@@ -34,7 +34,12 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/uuid.json
   def update
     begin
+      if @post.user.id != current_user.id
+        raise "not allowed"
+      end
+
       @post.update(post_params)
+
       success_json(200, I18n.t("api.success"), {})
     rescue Exception => e
       error_json(422, 422, e.message)

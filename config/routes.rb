@@ -14,4 +14,10 @@ Rails.application.routes.draw do
     end
     resources :likes
   end
+
+  resources :users do
+    collection do
+      patch 'update'
+    end
+  end
 end

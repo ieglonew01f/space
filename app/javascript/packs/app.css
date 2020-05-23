@@ -36,6 +36,33 @@ body {
     color: #FFF !important;
 }
 
+.space-combined-input label {
+    display: block;
+    font-weight: bold;
+}
+
+.ml-20 {
+    margin-left: 30px;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.space-input {
+    background: transparent;
+    border: transparent;
+    outline: 0;
+    border-bottom: 1px solid #365678;
+    width: 100%;
+    margin-bottom: 10px;
+    resize: none;
+}
+
+.text-center {
+    text-align: center;
+}
+
 .danger {
     color: #f50;
 }

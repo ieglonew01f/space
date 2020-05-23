@@ -8,5 +8,6 @@ axios.defaults.headers.common['X-CSRF-Token'] = AUTH_TOKEN
 axios.defaults.headers.common['Accept'] = 'application/json'
 
 export const MAX_INPUT_LEN = 50;
+export const MAX_BIO_LENGTH = 250;
 
 export const CURRENT_USER = (window as any).gon.current_user

@@ -4,6 +4,7 @@ import { ActionCableConsumer } from 'react-actioncable-provider';
 
 import { Editor } from './editor';
 import { PostCard } from './post';
+import { ProfileBuilder } from './profile-builder'
 import { AUTH_TOKEN, axios } from '../common/constants';
 
 import './index.css'
@@ -58,6 +59,7 @@ export class Feeds extends React.Component<Feeds.IProps, Feeds.IState> {
         <h3 className="mast">Trending</h3>
         <Editor></Editor>
         <div className="news-feed">
+          <ProfileBuilder></ProfileBuilder>
           <ActionCableConsumer
             channel="NewsFeedChannel"
             onReceived={this.handleReceived}

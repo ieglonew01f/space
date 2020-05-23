@@ -121,6 +121,12 @@
     color: #8799a6;
 }
 
+.feed-container .profile-builder {
+    padding: 15px;
+    border-bottom: 1px solid #38444b;
+    height: 260px;
+}
+
 .feed-container .news-feed h4 .stats-mini {
     color: #8395a2;
     font-weight: bold;
