@@ -22,7 +22,7 @@ export class ProfileBuilder extends React.Component<ProfileBuilder.IProps, Profi
 
     this.state = {
       loading: false,
-      bio: CURRENT_USER.bio,
+      bio: CURRENT_USER.bio || '',
     }
   }
 
