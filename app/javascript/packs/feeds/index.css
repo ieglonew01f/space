@@ -70,6 +70,8 @@
     cursor: pointer;
     border-color: transparent;
     border-radius: 50%;
+    position: relative;
+    top: 1px;
 }
 
 .feed-container .action-bar button.icon-btn:hover {
@@ -127,10 +129,11 @@
     height: 260px;
 }
 
-.feed-container .news-feed h4 .stats-mini {
+.feed-container .news-feed .stats-mini {
     color: #8395a2;
     font-weight: bold;
-    font-size: 13px;
+    font-size: 15px;
+    margin-top: 10px;
 }
 
 .feed-container .news-feed .content img {

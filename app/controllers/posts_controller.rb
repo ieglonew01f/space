@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :like_post]
 
   # GET /posts
   # GET /posts.json
@@ -39,6 +39,26 @@ class PostsController < ApplicationController
       end
 
       @post.update(post_params)
+
+      success_json(200, I18n.t("api.success"), {})
+    rescue Exception => e
+      error_json(422, 422, e.message)
+    end
+  end
+
+  def like_post
+    begin
+      already_liked = @post.post_likes.where('user_id = ?', current_user.id).exists?
+
+      if already_liked
+        success_json(200, "already liked", {})
+        return
+      end
+
+      post_like = PostLike.new
+      post_like.user_id = current_user.id
+      post_like.post_id = @post.id
+      post_like.save!
 
       success_json(200, I18n.t("api.success"), {})
     rescue Exception => e

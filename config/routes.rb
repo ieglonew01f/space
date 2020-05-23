@@ -13,8 +13,8 @@ Rails.application.routes.draw do
   resources :posts do
     collection do
       post 'parse_link'
+      post 'like_post'
     end
-    resources :likes
   end
 
   resources :users do
