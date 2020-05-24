@@ -16,6 +16,7 @@ import { createConsumer } from "@rails/actioncable"
 import { Feeds } from './feeds';
 import { SideMenu } from './common/sidemenu';
 import { Profile } from './profile';
+import { Settings } from './settings';
 import { Editor } from './feeds/editor';
 
 import 'antd/dist/antd.css'
@@ -52,6 +53,9 @@ const App = () => (
             </Route>
             <Route exact path="/profile/:id">
               <Profile></Profile>
+            </Route>
+            <Route exact path="/settings">
+              <Settings></Settings>
             </Route>
           </Col>
           {/* <Col span={8}>col-8</Col> */}

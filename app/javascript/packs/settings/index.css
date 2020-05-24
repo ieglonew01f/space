@@ -1,0 +1,35 @@
+.settings {
+    padding: 15px;
+    border-bottom: 1px solid #38444b;
+}
+
+.settings-container {
+    color: #FFF;
+}
+
+.settings-container h4 {
+    color: #FFF;
+    font-weight: bolder;
+    margin-bottom: 25px;
+}
+
+.settings-container {
+    height: 100vh !important;
+}
+
+.settings-container .ant-form {
+    position: relative;
+}
+
+.settings-container .change-avatar {
+    position: relative;
+    left: 30px;
+}
+
+.change-avatar-msg {
+    width: 121px;
+    left: 16px;
+    top: 10px;
+    display: inline-block;
+    position: relative;
+}
