@@ -1,6 +1,14 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+
+  def show
+    @total_likes = 0
+    @user.posts.each do |p|
+      likes = p.post_likes.where('user_id != ?', @user.id)
+      @total_likes = @total_likes + likes.count
+    end
+  end
 
   def update
     begin
@@ -8,7 +16,7 @@ class UsersController < ApplicationController
         raise "not allowed"
       end
 
-      @user.update(post_params)
+      @user.update(user_params)
 
       if !@user.bio.blank? && !@user.avatar.url.blank?
         @user.complete = 'true'
@@ -24,12 +32,12 @@ class UsersController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @user = User.find(current_user.id)
+    def set_user
+      @user = User.find_by_uuid(params[:id] || current_user.uuid)
     end
 
     # Only allow a list of trusted parameters through.
-    def post_params
+    def user_params
       params.permit(:name, :avatar, :bio)
     end
 end

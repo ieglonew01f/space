@@ -7,7 +7,6 @@ import { MAX_INPUT_LEN, AUTH_TOKEN, axios, CURRENT_USER } from '../common/consta
 
 const { Meta } = Card;
 
-
 export namespace Editor {
   export interface IProps {
 
@@ -171,6 +170,7 @@ export class Editor extends React.Component<Editor.IProps, Editor.IState> {
 
     return (
       <div className="editor">
+        <h3 className="mast">Trending</h3>
         <Row>
           <Col span={3}>
             <a href="#">

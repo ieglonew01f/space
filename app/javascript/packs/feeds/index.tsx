@@ -2,7 +2,6 @@ import * as React from 'react';
 
 import { ActionCableConsumer } from 'react-actioncable-provider';
 
-import { Editor } from './editor';
 import { PostCard } from './post';
 import { ProfileBuilder } from './profile-builder'
 import { AUTH_TOKEN, axios } from '../common/constants';
@@ -11,7 +10,7 @@ import './index.css'
 
 export namespace Feeds {
   export interface IProps {
-
+    filter: string;
   }
 
   export interface IState {
@@ -32,9 +31,17 @@ export class Feeds extends React.Component<Feeds.IProps, Feeds.IState> {
   }
 
   load = () => {
+    let uuid = null;
+
+    if (this.props.filter === 'profile') {
+      let hash = window.location.hash.split('/')
+      uuid = hash[hash.length - 1];
+    }
+
     axios
-      .get('/posts', {
-        authenticity_token: AUTH_TOKEN
+      .post('/posts/filter', {
+        user_id: uuid,
+        filter: this.props.filter
       })
       .then((response) => {
         this.setState({ posts: response.data })
@@ -54,10 +61,9 @@ export class Feeds extends React.Component<Feeds.IProps, Feeds.IState> {
 
   render() {
     const { posts } = this.state;
+
     return(
       <div className="center-col feed-container">
-        <h3 className="mast">Trending</h3>
-        <Editor></Editor>
         <div className="news-feed">
           <ProfileBuilder></ProfileBuilder>
           <ActionCableConsumer

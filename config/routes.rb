@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     collection do
       post 'parse_link'
       post 'like_post'
+      post 'filter'
     end
   end
 
@@ -21,5 +22,7 @@ Rails.application.routes.draw do
     collection do
       patch 'update'
     end
+
+    get 'stats'
   end
 end

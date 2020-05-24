@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { RiseOutlined, FireOutlined, InstagramOutlined, UserOutlined, SettingOutlined} from '@ant-design/icons';
+import { CURRENT_USER } from './constants';
 
 export namespace SideMenu {
   export interface IProps {
@@ -14,8 +15,12 @@ export namespace SideMenu {
 export class SideMenu extends React.Component<SideMenu.IProps, SideMenu.IState> {
   constructor(props: SideMenu.IProps) {
     super(props);
+
+    //populate existing hash
+    let hash = window.location.hash;
+
     this.state = {
-      activeTab: '#/'
+      activeTab: hash
     }
 
     window.addEventListener("hashchange", e => {
@@ -28,10 +33,10 @@ export class SideMenu extends React.Component<SideMenu.IProps, SideMenu.IState> 
     return(
       <div className="side-menu">
         <ul className="list-unstyled">
-          <li><a className={activeTab === '#/' ? 'active' : ''} href="#/"><RiseOutlined /> Trending</a></li>
-          <li><a className={activeTab === '#/hot' ? 'active' : ''} href="#/hot"><FireOutlined /> Hot</a></li>
+          <li><a className={activeTab === '#/' ? 'active' : ''} href="#/"><FireOutlined /> Hot</a></li>
+          <li><a className={activeTab === '#/trending' ? 'active' : ''} href="#/trending"><RiseOutlined /> Trending</a></li>
           <li><a className={activeTab === '#/fresh' ? 'active' : ''} href="#/fresh"><InstagramOutlined /> Fresh</a></li>
-          <li><a className={activeTab === '#/profile' ? 'active' : ''} href="#/profile"><UserOutlined /> Profile</a></li>
+          <li><a className={activeTab === '#/profile/' + CURRENT_USER.uuid ? 'active' : ''} href={"#/profile/" + CURRENT_USER.uuid}><UserOutlined /> Profile</a></li>
           <li><a className={activeTab === '#/settings' ? 'active' : ''} href="#/settings"><SettingOutlined /> Settings</a></li>
         </ul>
       </div>

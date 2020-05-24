@@ -16,9 +16,11 @@ import { createConsumer } from "@rails/actioncable"
 import { Feeds } from './feeds';
 import { SideMenu } from './common/sidemenu';
 import { Profile } from './profile';
+import { Editor } from './feeds/editor';
 
 import 'antd/dist/antd.css'
 import './app.css'
+import { CURRENT_USER } from './common/constants';
 
 const cable = createConsumer();
 
@@ -37,9 +39,18 @@ const App = () => (
           </Col>
           <Col span={9}>
             <Route exact path="/">
-              <Feeds></Feeds>
+              <Editor></Editor>
+              <Feeds filter="hot"></Feeds>
             </Route>
-            <Route exact path="/profile">
+            <Route exact path="/trending">
+              <Editor></Editor>
+              <Feeds filter="trending"></Feeds>
+            </Route>
+            <Route exact path="/fresh">
+              <Editor></Editor>
+              <Feeds filter="fresh"></Feeds>
+            </Route>
+            <Route exact path="/profile/:id">
               <Profile></Profile>
             </Route>
           </Col>

@@ -5,7 +5,27 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all.order("id DESC")
+  end
+
+  def filter
+    limit = params[:limit] || 10
+    offset = params[:offset] || 0
+    filter = params[:filter]
+    user_id = params[:user_id]
+
+    @posts = Post.all
+
+    if !user_id.blank?
+      user = User.find_by_uuid(user_id)
+      @posts = Post.all.order("id DESC")
+      @posts = @posts.where("user_id = ?", user.id)
+    end
+
+    if filter == "hot"
+      @posts = @posts.order("post_likes_count DESC")
+    else
+      @posts = @posts.order("id DESC")
+    end
   end
 
   # GET /posts/uuid
@@ -27,6 +47,7 @@ class PostsController < ApplicationController
     @post.image = params[:image]
     @post.content_meta = params[:meta]
     @post.uuid = SecureRandom.uuid
+    @post.post_likes_count = 0
     @post.save!
   end
 

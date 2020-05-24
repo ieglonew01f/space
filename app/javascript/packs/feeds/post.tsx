@@ -88,7 +88,9 @@ export class PostCard extends React.Component<Post.IProps, Post.IState> {
       <div onDoubleClick={this.likePost} className="post-card">
         <Row>
           <Col span={3}>
-            <Avatar size={55} src={post.user.avatar.url} icon={<UserOutlined />}/>
+            <a href={"#/profile/" + post.user.uuid}>
+              <Avatar size={55} src={post.user.avatar.url} icon={<UserOutlined />}/>
+            </a>
           </Col>
           <Col span={21}>
             <div className="header">

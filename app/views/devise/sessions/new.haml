@@ -1,4 +1,4 @@
-- @posts = Post.all.order("id DESC")
+- @posts = Post.all.order("post_likes_count DESC")
 = stylesheet_link_tag "login"
 = javascript_include_tag 'https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js'
 
@@ -31,7 +31,7 @@
                 .stats
                   %span.likes
                     %i.icon{"data-feather" => "heart"}
-                    500 Likes
+                    = "#{p.post_likes_count} Likes"
 
 :javascript
   feather.replace()

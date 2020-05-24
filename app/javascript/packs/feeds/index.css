@@ -1,10 +1,18 @@
-.feed-container .editor {
+.editor {
     color: #FFF;
     padding: 15px;
     padding-bottom: 5px;
+    border: 1px solid #38444b;
+    border-top: 0;
+    border-bottom: 0;
 }
 
-.feed-container .editor textarea {
+.editor .mast {
+    color: #FFF;
+    font-weight: bolder;
+}
+
+.editor textarea {
     width: 100%;
     border: 0;
     background: transparent;
@@ -13,43 +21,43 @@
     font-weight: bolder;
 }
 
-.feed-container .editor .preview img {
+.editor .preview img {
     width: 150px;
     border: 2px dashed #38444b;
     padding: 3px;
 }
 
-.feed-container .editor .preview .image-cross {
+.editor .preview .image-cross {
     position: relative;
     bottom: 72px;
     right: 10px;
     color: #FFF;
 }
 
-.feed-container .editor .preview .image-cross:hover {
+.editor .preview .image-cross:hover {
     color: #1da1f2;
 }
 
-.feed-container .editor .plength {
+.editor .plength {
     position: relative;
     top: -3px;
 }
 
-.feed-container .editor .clear-post {
+.editor .clear-post {
     margin-right: 10px;
 }
 
-.feed-container .action-bar {
+.editor .action-bar {
     margin-top: 10px;
 }
 
-.feed-container .ant-progress {
+.editor .ant-progress {
     position: relative;
     bottom: 4px;
     left: 14px;
 }
 
-.feed-container .action-bar button.icon-btn {
+.editor .action-bar button.icon-btn {
     background: transparent;
     color: #1da1f2;
     font-weight: bold;
@@ -74,7 +82,7 @@
     top: 1px;
 }
 
-.feed-container .action-bar button.icon-btn:hover {
+.action-bar button.icon-btn:hover {
     background: #365779;
     -webkit-transition: background-color 200ms linear;
     -ms-transition: background-color 200ms linear;
@@ -88,7 +96,7 @@
     transition: color 200ms linear;
 }
 
-.feed-container .action-bar button.float-right {
+.action-bar button.float-right {
     float: right;
 }
 

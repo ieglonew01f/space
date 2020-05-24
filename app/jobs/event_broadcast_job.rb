@@ -11,6 +11,8 @@ class EventBroadcastJob < ApplicationJob
 
   def render_event(event)
     @post = event
+    hash = {:id => @post.user.id}
+    @current_user_id = @post.user.id
 
     if !@post.content.blank?
       Rabl::Renderer.json(@post, 'posts/show', :view_path => 'app/views')
