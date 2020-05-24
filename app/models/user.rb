@@ -24,4 +24,8 @@ class User < ApplicationRecord
     end
     user
   end
+
+  def is_admin?
+    self.user_role == 'admin'
+  end
 end

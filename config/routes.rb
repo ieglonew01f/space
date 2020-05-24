@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/super_admin', as: 'rails_admin'
   root 'feed#index'
   
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }

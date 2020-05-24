@@ -20,7 +20,7 @@ gem 'redis', '~> 4.0'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
-
+gem 'rails_admin', '~> 2.0'
 gem 'foreman'
 gem 'devise'
 gem 'mysql2'
