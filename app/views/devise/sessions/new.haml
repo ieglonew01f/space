@@ -22,7 +22,7 @@
                   %span.time-ago
                     %i.icon{"data-feather" => "clock"}
                     = time_ago_in_words(p.created_at) + " ago"
-                %p
+                %p{:style => "font-size: 13px;"}
                   = p.content
 
                 - if p.image.url != ''
