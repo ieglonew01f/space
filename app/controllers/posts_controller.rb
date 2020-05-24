@@ -23,6 +23,9 @@ class PostsController < ApplicationController
 
     if filter == "hot"
       @posts = @posts.order("post_likes_count DESC")
+    elsif filter == "trending"
+      @posts = @posts.where("created_at > ?", 2.days.ago)
+      @posts = @posts.order("post_likes_count DESC")
     else
       @posts = @posts.order("id DESC")
     end
