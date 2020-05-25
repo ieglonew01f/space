@@ -63,6 +63,9 @@ export class Profile extends React.Component<Profile.IProps, Profile.IState> {
           <span className="stats"><b><HeartTwoTone twoToneColor="#eb2f96" /> {user.post_likes} Likes</b></span>
           <span className="stats"><b><EditTwoTone  /> {user.posts_count} Posts</b></span>
           <span className="stats"><b>Joined <ClockCircleTwoTone  /> {user.joined}</b></span>
+          <a href={"#/inbox/" + user.uuid} className="message-btn">
+            <b>Message</b>
+          </a>
         </div>
         <Feeds filter="profile"></Feeds>
       </div>

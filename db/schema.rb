@@ -10,10 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_24_115902) do
+ActiveRecord::Schema.define(version: 2020_05_25_113309) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "conversations", force: :cascade do |t|
+    t.string "uuid"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "message"
+    t.integer "by_id"
+    t.integer "for_id"
+    t.boolean "seen"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "uuid"
+    t.integer "conversation_id"
+  end
 
   create_table "post_likes", force: :cascade do |t|
     t.integer "user_id"
@@ -50,6 +67,7 @@ ActiveRecord::Schema.define(version: 2020_05_24_115902) do
     t.string "bio"
     t.string "complete"
     t.string "user_role"
+    t.string "status"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

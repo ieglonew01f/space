@@ -26,4 +26,7 @@ Rails.application.routes.draw do
 
     get 'stats'
   end
+
+  resources :messages
+  resources :conversations
 end

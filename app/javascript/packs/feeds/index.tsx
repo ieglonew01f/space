@@ -56,7 +56,7 @@ export class Feeds extends React.Component<Feeds.IProps, Feeds.IState> {
     let post = JSON.parse(resp.message);
     let { posts } = this.state;
 
-    this.setState({ posts: [post, ...posts]})
+    this.setState({ posts: [post, ...posts]});
   }
 
   render() {

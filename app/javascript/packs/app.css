@@ -69,6 +69,16 @@ body {
     outline: 0;
 }
 
+.space-badge {
+    position: relative;
+    bottom: 23px;
+    right: 22px;
+}
+
+.space-badge .ant-badge-count {
+    box-shadow: none;
+}
+
 .space-input {
     background: transparent;
     border: transparent;

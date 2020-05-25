@@ -1,5 +1,8 @@
 import * as React from 'react';
-import { RiseOutlined, FireOutlined, InstagramOutlined, UserOutlined, SettingOutlined} from '@ant-design/icons';
+
+import { RiseOutlined, FireOutlined, InstagramOutlined, UserOutlined, SettingOutlined, MessageOutlined } from '@ant-design/icons';
+import { Badge } from 'antd';
+
 import { CURRENT_USER } from './constants';
 
 export namespace SideMenu {
@@ -30,14 +33,41 @@ export class SideMenu extends React.Component<SideMenu.IProps, SideMenu.IState> 
 
   render() {
     const { activeTab } = this.state;
+
     return(
       <div className="side-menu">
         <ul className="list-unstyled">
-          <li><a className={activeTab === '#/' ? 'active' : ''} href="#/"><FireOutlined /> Hot</a></li>
-          <li><a className={activeTab === '#/trending' ? 'active' : ''} href="#/trending"><RiseOutlined /> Trending</a></li>
-          <li><a className={activeTab === '#/fresh' ? 'active' : ''} href="#/fresh"><InstagramOutlined /> Fresh</a></li>
-          <li><a className={activeTab === '#/profile/' + CURRENT_USER.uuid ? 'active' : ''} href={"#/profile/" + CURRENT_USER.uuid}><UserOutlined /> Profile</a></li>
-          <li><a className={activeTab === '#/settings' ? 'active' : ''} href="#/settings"><SettingOutlined /> Settings</a></li>
+          <li>
+            <a className={activeTab === '#/' ? 'active' : ''} href="#/">
+              <FireOutlined /> Hot
+            </a>
+          </li>
+          <li>
+            <a className={activeTab === '#/trending' ? 'active' : ''} href="#/trending">
+              <RiseOutlined /> Trending
+            </a>
+          </li>
+          <li>
+            <a className={activeTab === '#/fresh' ? 'active' : ''} href="#/fresh">
+              <InstagramOutlined /> Fresh
+            </a>
+          </li>
+          <li>
+            <a className={activeTab === '#/inbox' ? 'active' : ''} href="#/inbox">
+              <MessageOutlined /> Inbox
+            </a>
+            <Badge className="space-badge" count={25}/>
+          </li>
+          <li>
+            <a className={activeTab === '#/profile/' + CURRENT_USER.uuid ? 'active' : ''} href={"#/profile/" + CURRENT_USER.uuid}>
+              <UserOutlined /> Profile
+            </a>
+          </li>
+          <li>
+            <a className={activeTab === '#/settings' ? 'active' : ''} href="#/settings">
+              <SettingOutlined /> Settings
+            </a>
+          </li>
         </ul>
       </div>
     )

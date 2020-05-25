@@ -1,0 +1,157 @@
+.message-container {
+    border-bottom: 1px solid #38444b;
+    padding-bottom: 10px;
+}
+
+.message-history .header {
+    padding-bottom: 10px;;
+    padding: 15px;
+    border-bottom: 1px solid #38444b;
+}
+
+.message-history .mast {
+    color: #FFF;
+    font-weight: bolder;
+    margin-bottom: 7px;
+}
+
+.message-container a {
+    color: #FFF;
+}
+
+.message-container .profile-header {
+    border-bottom: 1px solid #38444b;
+    padding: 15px;
+}
+
+.message-container .profile-header span {
+    font-weight: bolder;
+    margin-left: 10px;
+}
+
+.message-container .message-conversation {
+    border-bottom: 1px solid #38444b;
+    height: calc(100vh - 145px);
+    overflow-y: auto;
+    padding: 15px;
+}
+
+.message-container .message-input {
+    border-bottom: 1px solid #38444b;
+    padding: 15px;
+}
+
+.message-input button {
+    margin-left: 55px;
+    border: 0;
+    background: transparent;
+    color: #1da1f2;
+    font-weight: bold;
+    font-size: 21px;
+    border-radius: 50%;
+    cursor: pointer;
+    border-color: transparent;
+    margin-right: 5px;
+    padding: 9px 15px;
+    margin-top: 10px;
+    outline: 0;
+}
+
+.message-input .space-input {
+    width: 100%;
+}
+
+.message-conversation .message-incoming .text {
+    display: inline-block;
+    padding: 6px 16px;
+    margin-left: 10px;
+    background: rgb(61, 84, 102);
+    border-radius: 20px;
+    max-width: 350px;
+    position: relative;
+    border-bottom-left-radius: 0;
+    bottom: 5px;
+    margin-bottom: 25px;
+}
+
+.message-conversation .message-incoming,
+.message-conversation .message-outgoing {
+    clear: both;
+}
+
+.message-conversation .message-outgoing .text {
+    display: block;
+    padding: 6px 16px;
+    margin-left: 10px;
+    background: #1391de;
+    border-radius: 20px;
+    max-width: 350px;
+    clear: both;
+    position: relative;
+    border-bottom-right-radius: 0;
+    bottom: 5px;
+    float: right;
+    margin-bottom: 20px;
+}
+
+.message-conversation .message-outgoing .seen-text {
+    display: inline-block;
+    float: right;
+    clear: both;
+    color: #607894;
+    font-size: 11px;
+}
+
+.message-input button:hover {
+    background: #365779;
+    -webkit-transition: background-color 200ms linear;
+    -ms-transition: background-color 200ms linear;
+    transition: background-color 200ms linear;
+}
+
+.message-history {
+    border-right: 1px solid #38444b;
+    border-bottom: 1px solid #38444b;
+    height: 100%;
+    color: #FFF;
+}
+
+.message-history .list-unstyled {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.message-history .users li a {
+    padding: 15px;
+    display: block;
+    color: #FFFF;
+    padding-bottom: 0;
+    border-bottom: 1px solid #38444b;
+}
+
+.message-history .last-msg {
+    color: #607894;
+}
+
+.message-history .users li a:hover,
+.message-history .users li a:focus {
+    background: rgb(25,39,52);
+    transition: background-color 200ms linear;
+}
+
+.message-history .name,
+.message-container .name {
+    font-weight: bolder;
+    font-size: 15px;
+}
+
+.message-history .date-stamp {
+    color: #607894;
+    float: right;
+}
+
+.message-history .users {
+    height: 100%;
+    overflow-y: auto;
+}

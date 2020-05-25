@@ -46,7 +46,6 @@ export class Editor extends React.Component<Editor.IProps, Editor.IState> {
     axios
       .post('/posts/parse_link', {
         url: url,
-        authenticity_token: AUTH_TOKEN,
       })
       .then((response) => {
         this.setState({expandedUrl: response.data.data})

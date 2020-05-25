@@ -18,10 +18,11 @@ import { SideMenu } from './common/sidemenu';
 import { Profile } from './profile';
 import { Settings } from './settings';
 import { Editor } from './feeds/editor';
+import { Inbox } from './inbox';
+import { History } from './inbox/history';
 
-import 'antd/dist/antd.css'
-import './app.css'
-import { CURRENT_USER } from './common/constants';
+import 'antd/dist/antd.css';
+import './app.css';
 
 const cable = createConsumer();
 
@@ -38,26 +39,50 @@ const App = () => (
             </div>
             <SideMenu></SideMenu>
           </Col>
-          <Col span={9}>
-            <Route exact path="/">
+          <Route exact path="/">
+            <Col span={9}>
               <Editor></Editor>
               <Feeds filter="hot"></Feeds>
-            </Route>
-            <Route exact path="/trending">
+            </Col>
+          </Route>
+          <Route exact path="/trending">
+            <Col span={9}>
               <Editor></Editor>
               <Feeds filter="trending"></Feeds>
-            </Route>
-            <Route exact path="/fresh">
+            </Col>
+          </Route>
+          <Route exact path="/fresh">
+            <Col span={9}>
               <Editor></Editor>
               <Feeds filter="fresh"></Feeds>
-            </Route>
-            <Route exact path="/profile/:id">
+            </Col>
+          </Route>
+          <Route exact path="/inbox/:id">
+            <Col span={9}>
+              <Inbox></Inbox>
+            </Col>
+            <Col span={5}>
+              <History></History>
+            </Col>
+          </Route>
+          <Route exact path="/inbox/">
+            <Col span={9}>
+              <Inbox></Inbox>
+            </Col>
+            <Col span={5}>
+              <History></History>
+            </Col>
+          </Route>
+          <Route exact path="/profile/:id">
+            <Col span={9}>
               <Profile></Profile>
-            </Route>
-            <Route exact path="/settings">
+            </Col>
+          </Route>
+          <Route exact path="/settings">
+            <Col span={9}>
               <Settings></Settings>
-            </Route>
-          </Col>
+            </Col>
+          </Route>
           {/* <Col span={8}>col-8</Col> */}
         </Row>
       </HashRouter>

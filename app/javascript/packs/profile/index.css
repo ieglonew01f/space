@@ -7,6 +7,10 @@
     padding-bottom: 0 !important;
 }
 
+.profile-container .message-btn {
+    float: right;
+}
+
 .bio .stats {
     margin-right: 10px;
 }
