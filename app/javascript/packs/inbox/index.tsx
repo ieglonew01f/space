@@ -56,7 +56,7 @@ export class Inbox extends React.Component<Inbox.IProps, Inbox.IState> {
 
     //if conv id is not found load the most 
     //recent conv
-    if (with_id) {
+    if (with_id && with_id !== 'inbox') {
       axios
         .get('/conversations/' + with_id)
         .then((response) => {
@@ -69,7 +69,11 @@ export class Inbox extends React.Component<Inbox.IProps, Inbox.IState> {
       axios
         .get('/conversations')
         .then((response) => {
-          this.respCallback(response.data);
+          const lastConv = response.data[0];
+          const user = lastConv.user_details;
+
+          (window.location as any) = '#/inbox/' + user.uuid;
+
         })
         .catch((err) => {
           

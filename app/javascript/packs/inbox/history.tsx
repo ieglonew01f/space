@@ -40,8 +40,21 @@ export class History extends React.Component<History.IProps, History.IState> {
       });
   }
 
+  isSelectedConv = (uuid: string): boolean => {
+    let hash = window.location.hash;
+    let hashArr = hash.split('/');
+    let hashUuid = hashArr[hashArr.length - 1];
+
+    if (uuid === hashUuid) {
+      return true;
+    }
+
+    return false;
+  }
+
   render() {
     const { conversations } = this.state;
+
     return(
       <div className="message-history">
         <div className="header">
@@ -51,7 +64,7 @@ export class History extends React.Component<History.IProps, History.IState> {
           <ul className="list-unstyled">
             {conversations.map((conv, i) => {
               return (
-                <li key={i}>
+                <li className={this.isSelectedConv(conv.user_details.uuid) ? 'active' : ''} key={i}>
                   <a href={"#/inbox/" + conv.user_details.uuid}>
                     <Row>
                       <Col span={3}>

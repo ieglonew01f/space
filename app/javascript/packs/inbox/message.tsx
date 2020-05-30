@@ -28,13 +28,25 @@ export class Message extends React.Component<Message.IProps, Message.IState> {
     }
   }
 
+  latestMessage: any = null;
+
+  scrollToBottom = () => this.latestMessage.scrollIntoView({ behavior: "smooth" });
+  
+  componentDidMount() {
+    this.scrollToBottom();
+  }
+  
+  componentDidUpdate() {
+    this.scrollToBottom();
+  }
+
   render() {
     const { message } = this.state;
     let messageBody = null;
 
     if (message.incoming_message) {
       messageBody = (
-        <div className="message message-incoming">
+        <div ref={(el) => { this.latestMessage = el; }} className="message message-incoming">
           <Avatar src={message.user.avatar.url} size="small" icon={<UserOutlined />} />
           <span className="text">{message.message}</span>
         </div>
@@ -43,7 +55,7 @@ export class Message extends React.Component<Message.IProps, Message.IState> {
 
     if (!message.incoming_message) {
       messageBody = (
-        <div className="message message-outgoing">
+        <div ref={(el) => { this.latestMessage = el; }} className="message message-outgoing">
           <span className="text">{message.message}</span>
           <span className={message.seen ? "seen-text" : "hide"}>Seen</span>
         </div>

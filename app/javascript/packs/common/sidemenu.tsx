@@ -4,6 +4,7 @@ import { RiseOutlined, FireOutlined, InstagramOutlined, UserOutlined, SettingOut
 import { Badge } from 'antd';
 
 import { CURRENT_USER } from './constants';
+import { axios } from '../common/constants';
 
 export namespace SideMenu {
   export interface IProps {
@@ -12,6 +13,7 @@ export namespace SideMenu {
 
   export interface IState {
     activeTab: string;
+    unreadMessages: number;
   }
 }
 
@@ -23,16 +25,32 @@ export class SideMenu extends React.Component<SideMenu.IProps, SideMenu.IState> 
     let hash = window.location.hash;
 
     this.state = {
-      activeTab: hash
+      activeTab: hash,
+      unreadMessages: 0
     }
 
     window.addEventListener("hashchange", e => {
       this.setState( { activeTab: window.location.hash })
     });
+
+    this.loadEvents();
+  }
+
+  loadEvents = () => {
+    axios
+    .get('/events')
+    .then((response) => {
+      let events = response.data.data;
+
+      this.setState({unreadMessages: events.unread_messages})
+    })
+    .catch((err) => {
+      
+    });
   }
 
   render() {
-    const { activeTab } = this.state;
+    const { activeTab, unreadMessages } = this.state;
 
     return(
       <div className="side-menu">
@@ -53,10 +71,10 @@ export class SideMenu extends React.Component<SideMenu.IProps, SideMenu.IState> 
             </a>
           </li>
           <li>
-            <a className={activeTab === '#/inbox' ? 'active' : ''} href="#/inbox">
+            <a className={activeTab.match(/#\/inbox\/.+/g) ? 'active' : ''} href="#/inbox">
               <MessageOutlined /> Inbox
             </a>
-            <Badge className="space-badge" count={25}/>
+            <Badge className="space-badge" count={unreadMessages}/>
           </li>
           <li>
             <a className={activeTab === '#/profile/' + CURRENT_USER.uuid ? 'active' : ''} href={"#/profile/" + CURRENT_USER.uuid}>
