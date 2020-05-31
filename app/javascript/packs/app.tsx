@@ -55,6 +55,16 @@ const App = () => (
               <Feeds filter="fresh"></Feeds>
             </Col>
           </Route>
+          <Route exact path="/profile/:id">
+            <Col span={9}>
+              <Profile></Profile>
+            </Col>
+          </Route>
+          <Route exact path="/settings">
+            <Col span={9}>
+              <Settings></Settings>
+            </Col>
+          </Route>
           <Route exact path="/inbox/">
             <Col span={9}>
               <Inbox></Inbox>
@@ -75,16 +85,6 @@ const App = () => (
               }} 
             />
           </Col>
-          <Route exact path="/profile/:id">
-            <Col span={9}>
-              <Profile></Profile>
-            </Col>
-          </Route>
-          <Route exact path="/settings">
-            <Col span={9}>
-              <Settings></Settings>
-            </Col>
-          </Route>
           {/* <Col span={8}>col-8</Col> */}
         </Row>
       </HashRouter>
