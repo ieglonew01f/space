@@ -51,13 +51,12 @@ export class SideMenu extends React.Component<SideMenu.IProps, SideMenu.IState> 
   }
 
   handleReceived = (msg) => {
-    this.setState({
-      unreadMessages: msg.event.unread_messages
-    });
-
     // do not play for inbox page
-    if (window.location.hash.indexOf('inbox') === -1) {
+    if (window.location.hash.indexOf('inbox') === -1 && msg.event.unread_messages) {
       notificationSound.play();
+      this.setState({
+        unreadMessages: msg.event.unread_messages
+      });
     }
   }
 

@@ -58,7 +58,7 @@ export class Inbox extends React.Component<Inbox.IProps, Inbox.IState> {
   }
 
   readonly eventChannel: any = null;
-  timeout: any;
+  timeout: boolean = false;
 
   loadConv = () => {
     let hash = window.location.hash.split('/');
@@ -129,6 +129,9 @@ export class Inbox extends React.Component<Inbox.IProps, Inbox.IState> {
     if (event.key === 'Enter' && !event.shiftKey){
       this.send();
     }
+    else {
+      this.sendIsTyping();
+    }
   }
 
   scrollToBottom = () => {
@@ -160,13 +163,24 @@ export class Inbox extends React.Component<Inbox.IProps, Inbox.IState> {
   }
 
   handleReceived = (msg) => {
+    if (window.location.hash.indexOf('inbox') === -1) {
+      return;
+    }
+
     const { conversation } = this.state;
     const { event } = msg;
 
     if (event.is_typing) {
       this.setState({
         isTyping: event.value
-      })
+      });
+
+      setTimeout(() => {
+        this.setState({
+          isTyping: false
+        });  
+      }, 5000);
+
       return;
     }
 
@@ -174,7 +188,8 @@ export class Inbox extends React.Component<Inbox.IProps, Inbox.IState> {
     conversation.messages = newMessages;
 
     this.setState({
-      conversation: conversation
+      conversation: conversation,
+      isTyping: false
     });
 
     incomingMessageSound.play();
@@ -185,19 +200,19 @@ export class Inbox extends React.Component<Inbox.IProps, Inbox.IState> {
   }
 
   sendIsTyping = () => {
-    clearTimeout(this.timeout);
     const { withUser } = this.state;
-    this.eventChannel.perform('is_typing', {
-      for_id: withUser.id,
-      is_typing: true
-    });
 
-    this.timeout = setTimeout(() => {
-      this.eventChannel.perform('is_typing', {
-        for_id: withUser.id,
-        is_typing: false
-      });
-    }, 2000);
+    if (!this.timeout) {
+      setTimeout(() => {
+        this.eventChannel.perform('is_typing', {
+          for_id: withUser.id,
+          is_typing: true
+        });
+        this.timeout = false;
+      }, 2000);
+
+      this.timeout = true;
+    }
   }
 
   render() {
@@ -237,7 +252,7 @@ export class Inbox extends React.Component<Inbox.IProps, Inbox.IState> {
         <div className="message-input">
           <Row>
             <Col span={20}>
-              <textarea value={this.state.message} onKeyUp={this.sendIsTyping} onKeyPress={this.handleKeyPress} onChange={this.handleChangeInput} placeholder="Start typing to send a message ..." className="space-input"></textarea>
+              <textarea value={this.state.message} onKeyPress={this.handleKeyPress} onChange={this.handleChangeInput} placeholder="Start typing to send a message ..." className="space-input"></textarea>
             </Col>
             <Col span={3}>
               <button onClick={this.send} className="chat-button"><SendOutlined /></button>
