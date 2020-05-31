@@ -19,21 +19,21 @@ export const outGoingMessageSound = new Howl({
     src: ['/sounds/outgoing-message.ogg'],
     autoplay: false,
     loop: false,
-    volume: 0.5
+    volume: 0.4
 });
 
 export const incomingMessageSound = new Howl({
     src: ['/sounds/new-message.ogg'],
     autoplay: false,
     loop: false,
-    volume: 0.5
+    volume: 0.4
 });
 
 export const notificationSound = new Howl({
     src: ['/sounds/notification.mp3'],
     autoplay: false,
     loop: false,
-    volume: 0.5
+    volume: 0.4
 });
 
 export const cable = createConsumer();
