@@ -55,14 +55,6 @@ const App = () => (
               <Feeds filter="fresh"></Feeds>
             </Col>
           </Route>
-          <Route exact path="/inbox/:id">
-            <Col span={9}>
-              <Inbox></Inbox>
-            </Col>
-            <Col span={5}>
-              <History></History>
-            </Col>
-          </Route>
           <Route exact path="/inbox/">
             <Col span={9}>
               <Inbox></Inbox>
@@ -71,6 +63,18 @@ const App = () => (
               <History></History>
             </Col>
           </Route>
+          <Col span={9}>
+            <Route path="/inbox/:id" component={ function ({ match }) {
+              return <Inbox></Inbox>
+              }} 
+            />
+          </Col>
+          <Col span={5}>
+            <Route path="/inbox/:id" component={ function ({ match }) {
+                return <History></History>
+              }} 
+            />
+          </Col>
           <Route exact path="/profile/:id">
             <Col span={9}>
               <Profile></Profile>

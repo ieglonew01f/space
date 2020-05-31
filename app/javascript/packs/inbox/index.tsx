@@ -57,6 +57,17 @@ export class Inbox extends React.Component<Inbox.IProps, Inbox.IState> {
     this.loadConv();
   }
 
+  componentDidUpdate() {
+    const { withUser } = this.state;
+
+    let hash = window.location.hash.split('/');
+    let with_id = hash[hash.length - 1];
+
+    if (with_id && with_id !== 'inbox' && with_id !== withUser.uuid) {
+      this.loadConv();
+    }
+  }
+
   readonly eventChannel: any = null;
   timeout: boolean = false;
 
@@ -170,6 +181,11 @@ export class Inbox extends React.Component<Inbox.IProps, Inbox.IState> {
     const { conversation } = this.state;
     const { event } = msg;
 
+    // check if conv id matches the event conv id
+    if (conversation.uuid !== event.conv_id) {
+      return;
+    }
+
     if (event.is_typing) {
       this.setState({
         isTyping: event.value
@@ -183,6 +199,10 @@ export class Inbox extends React.Component<Inbox.IProps, Inbox.IState> {
 
       return;
     }
+
+    this.setState({
+      isTyping: false
+    });
 
     let newMessages = [...conversation.messages, {message:  event.new_message}];
     conversation.messages = newMessages;
@@ -200,13 +220,14 @@ export class Inbox extends React.Component<Inbox.IProps, Inbox.IState> {
   }
 
   sendIsTyping = () => {
-    const { withUser } = this.state;
+    const { withUser, conversation } = this.state;
 
     if (!this.timeout) {
       setTimeout(() => {
         this.eventChannel.perform('is_typing', {
           for_id: withUser.id,
-          is_typing: true
+          is_typing: true,
+          conv_id: conversation.uuid
         });
         this.timeout = false;
       }, 2000);
@@ -252,7 +273,7 @@ export class Inbox extends React.Component<Inbox.IProps, Inbox.IState> {
         <div className="message-input">
           <Row>
             <Col span={20}>
-              <textarea value={this.state.message} onKeyPress={this.handleKeyPress} onChange={this.handleChangeInput} placeholder="Start typing to send a message ..." className="space-input"></textarea>
+              <input value={this.state.message} onKeyPress={this.handleKeyPress} onChange={this.handleChangeInput} placeholder="Start typing to send a message ..." className="space-input"></input>
             </Col>
             <Col span={3}>
               <button onClick={this.send} className="chat-button"><SendOutlined /></button>

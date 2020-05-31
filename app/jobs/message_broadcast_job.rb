@@ -7,6 +7,7 @@ class MessageBroadcastJob < ApplicationJob
     sender = message.sender
     event = {
       :unread_messages => user_messages.count,
+      :conv_id => message.conversation.uuid,
       :new_message => {
         :uuid => message.uuid,
         :message => message.message,

@@ -6,7 +6,8 @@ class EventChannel < ApplicationCable::Channel
   def is_typing(data)
     event = {
       :is_typing => true,
-      :value => data['is_typing']
+      :value => data['is_typing'],
+      :conv_id => data['conv_id']
     }
     ActionCable.server.broadcast "event_channel_#{data['for_id']}", event: event
   end

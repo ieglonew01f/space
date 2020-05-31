@@ -1,11 +1,7 @@
 import * as React from 'react';
 
-import { Avatar, Row, Col, Button, message } from 'antd';
-import { UserOutlined, SendOutlined } from '@ant-design/icons';
-
-import { ActionCableConsumer } from 'react-actioncable-provider';
-
-import { axios } from '../common/constants';
+import { Avatar } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
 
 import './index.css'
 

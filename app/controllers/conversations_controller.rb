@@ -1,10 +1,7 @@
 class ConversationsController < ApplicationController
   def index
-    conv_b = Conversation.where('by_id = ?', current_user.uuid)
-    conv_w = Conversation.where('with_id = ?', current_user.uuid)
-
-    @conv = conv_b + conv_w
-    @conv = @conv.sort
+    @conv = Conversation.where('by_id = ? OR with_id = ?', current_user.uuid, current_user.uuid)
+    @conv = @conv.order('updated_at desc')
   end
 
   def show
