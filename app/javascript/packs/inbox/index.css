@@ -153,6 +153,9 @@
 .message-history .date-stamp {
     color: #607894;
     float: right;
+    position: relative;
+    top: 3px;
+    left: 19px;
 }
 
 .message-history .users {
