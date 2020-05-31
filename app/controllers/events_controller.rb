@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   def index
     begin
-      user_messages = Message.where("by_id = ? OR for_id = ?", current_user.id, current_user.id)
+      user_messages = Message.where("for_id = ?", current_user.id)
       user_messages = user_messages.where("seen = ? OR seen = ?", nil, false)
 
       success_json(200, I18n.t("api.success"), {:unread_messages => user_messages.count})

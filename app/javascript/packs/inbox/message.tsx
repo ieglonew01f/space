@@ -30,7 +30,7 @@ export class Message extends React.Component<Message.IProps, Message.IState> {
 
   latestMessage: any = null;
 
-  scrollToBottom = () => this.latestMessage.scrollIntoView({ behavior: "smooth" });
+  scrollToBottom = () => this.latestMessage.scrollIntoView();
   
   componentDidMount() {
     this.scrollToBottom();

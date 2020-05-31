@@ -1,6 +1,9 @@
 // import consumer from "./consumer"
 
-// consumer.subscriptions.create("AppearanceChannel", {
+// consumer.subscriptions.create({
+//   channel: 'EventsChannel',
+//   user: 1
+// }, {
 //   connected() {
 //     // Called when the subscription is ready for use on the server
 //   },

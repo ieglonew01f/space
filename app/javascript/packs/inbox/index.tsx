@@ -4,7 +4,7 @@ import { ActionCableConsumer } from 'react-actioncable-provider';
 import { Avatar, Row, Col, Button } from 'antd';
 import { UserOutlined, SendOutlined } from '@ant-design/icons';
 
-import { axios, CURRENT_USER } from '../common/constants';
+import { cable, axios, CURRENT_USER, outGoingMessageSound, incomingMessageSound } from '../common/constants';
 import { Message } from './message';
 
 import './index.css';
@@ -18,6 +18,7 @@ export namespace Inbox {
     message: string;
     withUser: any;
     conversation: any;
+    isTyping: boolean;
   }
 }
 
@@ -27,6 +28,7 @@ export class Inbox extends React.Component<Inbox.IProps, Inbox.IState> {
 
     this.state = {
       message: "",
+      isTyping: false,
       withUser: {
         name: '',
         avatar: {
@@ -47,8 +49,16 @@ export class Inbox extends React.Component<Inbox.IProps, Inbox.IState> {
       },
     }
 
+    this.eventChannel = cable.subscriptions.create({
+      channel: 'EventChannel',
+      user: CURRENT_USER.id
+    });
+
     this.loadConv();
   }
+
+  readonly eventChannel: any = null;
+  timeout: any;
 
   loadConv = () => {
     let hash = window.location.hash.split('/');
@@ -99,6 +109,7 @@ export class Inbox extends React.Component<Inbox.IProps, Inbox.IState> {
   send = () => {
     let { message, withUser, conversation } = this.state;
     this.createLocalConv();
+    this.scrollToBottom();
 
     axios
       .post('/messages', {
@@ -112,6 +123,17 @@ export class Inbox extends React.Component<Inbox.IProps, Inbox.IState> {
       .catch((err) => {
         
       });
+  }
+
+  handleKeyPress = (event) => {
+    if (event.key === 'Enter' && !event.shiftKey){
+      this.send();
+    }
+  }
+
+  scrollToBottom = () => {
+    var objDiv = document.getElementsByClassName("message-conversation") as any;
+    objDiv[0].scrollTop = objDiv[0].scrollHeight - 150;
   }
 
   createLocalConv = () => {
@@ -133,10 +155,57 @@ export class Inbox extends React.Component<Inbox.IProps, Inbox.IState> {
       conversation: conversation,
       message: "",
     });
+
+    outGoingMessageSound.play();
+  }
+
+  handleReceived = (msg) => {
+    const { conversation } = this.state;
+    const { event } = msg;
+
+    if (event.is_typing) {
+      this.setState({
+        isTyping: event.value
+      })
+      return;
+    }
+
+    let newMessages = [...conversation.messages, {message:  event.new_message}];
+    conversation.messages = newMessages;
+
+    this.setState({
+      conversation: conversation
+    });
+
+    incomingMessageSound.play();
+  }
+
+  handleConnect = (msg) => {
+    this.loadConv();
+  }
+
+  sendIsTyping = () => {
+    clearTimeout(this.timeout);
+    const { withUser } = this.state;
+    this.eventChannel.perform('is_typing', {
+      for_id: withUser.id,
+      is_typing: true
+    });
+
+    this.timeout = setTimeout(() => {
+      this.eventChannel.perform('is_typing', {
+        for_id: withUser.id,
+        is_typing: false
+      });
+    }, 2000);
   }
 
   render() {
-    const { withUser, conversation } = this.state;
+    const { withUser, conversation, isTyping} = this.state;
+    const channelToListen = {
+      channel: "EventChannel",
+      user: CURRENT_USER.id
+    }
 
     return(
       <div className="center-col message-container">
@@ -149,16 +218,26 @@ export class Inbox extends React.Component<Inbox.IProps, Inbox.IState> {
           </a>
         </div>
         <div className="message-conversation">
-          {conversation.messages.map((message, i) => {
-            return (
-              <Message key={i} message={message.message}></Message>
-            );
-          })}
+          <ActionCableConsumer
+            channel={channelToListen}
+            onReceived={this.handleReceived}
+            onConnected={this.handleConnect}
+          >
+            {conversation.messages.map((message, i) => {
+              return (
+                <Message key={i} message={message.message}></Message>
+              );
+            })}
+          </ActionCableConsumer>
+          <div className={isTyping ? "message message-incoming" : "hide"}>
+            <Avatar src={withUser.avatar.url} size="small" icon={<UserOutlined />} />
+            <div className="message-typing-loader lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+          </div>
         </div>
         <div className="message-input">
           <Row>
             <Col span={20}>
-              <textarea value={this.state.message} onChange={this.handleChangeInput} placeholder="Start typing to send a message ..." className="space-input"></textarea>
+              <textarea value={this.state.message} onKeyUp={this.sendIsTyping} onKeyPress={this.handleKeyPress} onChange={this.handleChangeInput} placeholder="Start typing to send a message ..." className="space-input"></textarea>
             </Col>
             <Col span={3}>
               <button onClick={this.send} className="chat-button"><SendOutlined /></button>

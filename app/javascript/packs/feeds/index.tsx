@@ -8,18 +8,15 @@ import { AUTH_TOKEN, axios } from '../common/constants';
 
 import './index.css'
 
-export namespace Feeds {
-  export interface IProps {
-    filter: string;
-  }
-
-  export interface IState {
-    posts: Array<any>
-  }
+export interface IProps {
+  filter: string;
 }
 
-export class Feeds extends React.Component<Feeds.IProps, Feeds.IState> {
-  constructor(props: Feeds.IProps) {
+export interface IState {
+  posts: Array<any>
+}
+export class Feeds extends React.Component<IProps, IState> {
+  constructor(props: IProps) {
     super(props)
     this.handleReceived = this.handleReceived.bind(this);
 

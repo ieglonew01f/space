@@ -2,8 +2,9 @@ import * as React from 'react';
 
 import { RiseOutlined, FireOutlined, InstagramOutlined, UserOutlined, SettingOutlined, MessageOutlined } from '@ant-design/icons';
 import { Badge } from 'antd';
+import { ActionCableConsumer } from 'react-actioncable-provider';
 
-import { CURRENT_USER } from './constants';
+import { CURRENT_USER, notificationSound } from './constants';
 import { axios } from '../common/constants';
 
 export namespace SideMenu {
@@ -49,45 +50,65 @@ export class SideMenu extends React.Component<SideMenu.IProps, SideMenu.IState> 
     });
   }
 
+  handleReceived = (msg) => {
+    this.setState({
+      unreadMessages: msg.event.unread_messages
+    });
+
+    // do not play for inbox page
+    if (window.location.hash.indexOf('inbox') === -1) {
+      notificationSound.play();
+    }
+  }
+
   render() {
     const { activeTab, unreadMessages } = this.state;
+    const channelToListen = {
+      channel: "EventChannel",
+      user: CURRENT_USER.id
+    }
 
     return(
-      <div className="side-menu">
-        <ul className="list-unstyled">
-          <li>
-            <a className={activeTab === '#/' ? 'active' : ''} href="#/">
-              <FireOutlined /> Hot
-            </a>
-          </li>
-          <li>
-            <a className={activeTab === '#/trending' ? 'active' : ''} href="#/trending">
-              <RiseOutlined /> Trending
-            </a>
-          </li>
-          <li>
-            <a className={activeTab === '#/fresh' ? 'active' : ''} href="#/fresh">
-              <InstagramOutlined /> Fresh
-            </a>
-          </li>
-          <li>
-            <a className={activeTab.match(/#\/inbox\/.+/g) ? 'active' : ''} href="#/inbox">
-              <MessageOutlined /> Inbox
-            </a>
-            <Badge className="space-badge" count={unreadMessages}/>
-          </li>
-          <li>
-            <a className={activeTab === '#/profile/' + CURRENT_USER.uuid ? 'active' : ''} href={"#/profile/" + CURRENT_USER.uuid}>
-              <UserOutlined /> Profile
-            </a>
-          </li>
-          <li>
-            <a className={activeTab === '#/settings' ? 'active' : ''} href="#/settings">
-              <SettingOutlined /> Settings
-            </a>
-          </li>
-        </ul>
-      </div>
+      <ActionCableConsumer
+        channel={channelToListen}
+        onReceived={this.handleReceived}
+      >
+        <div className="side-menu">
+          <ul className="list-unstyled">
+            <li>
+              <a className={activeTab === '#/' ? 'active' : ''} href="#/">
+                <FireOutlined /> Hot
+              </a>
+            </li>
+            <li>
+              <a className={activeTab === '#/trending' ? 'active' : ''} href="#/trending">
+                <RiseOutlined /> Trending
+              </a>
+            </li>
+            <li>
+              <a className={activeTab === '#/fresh' ? 'active' : ''} href="#/fresh">
+                <InstagramOutlined /> Fresh
+              </a>
+            </li>
+            <li>
+              <a className={activeTab.match(/#\/inbox\/.+/g) ? 'active' : ''} href="#/inbox">
+                <MessageOutlined /> Inbox
+              </a>
+              <Badge className="space-badge" count={unreadMessages}/>
+            </li>
+            <li>
+              <a className={activeTab === '#/profile/' + CURRENT_USER.uuid ? 'active' : ''} href={"#/profile/" + CURRENT_USER.uuid}>
+                <UserOutlined /> Profile
+              </a>
+            </li>
+            <li>
+              <a className={activeTab === '#/settings' ? 'active' : ''} href="#/settings">
+                <SettingOutlined /> Settings
+              </a>
+            </li>
+          </ul>
+        </div>
+      </ActionCableConsumer>
     )
   }
 }

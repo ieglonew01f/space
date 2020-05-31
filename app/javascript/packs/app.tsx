@@ -10,7 +10,7 @@ import {
 } from "react-router-dom";
 
 import { ActionCableProvider } from 'react-actioncable-provider';
-import { createConsumer } from "@rails/actioncable"
+import { cable } from "./common/constants";
 
 
 import { Feeds } from './feeds';
@@ -23,8 +23,6 @@ import { History } from './inbox/history';
 
 import 'antd/dist/antd.css';
 import './app.css';
-
-const cable = createConsumer();
 
 const App = () => (
   <div className="main-app">
