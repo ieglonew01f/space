@@ -50,6 +50,10 @@ export class SideMenu extends React.Component<SideMenu.IProps, SideMenu.IState> 
     });
   }
 
+  componentDidUpdate() {
+    this.loadEvents();
+  }
+
   handleReceived = (msg) => {
     // do not play for inbox page
     if (window.location.hash.indexOf('inbox') === -1 && msg.event.unread_messages) {
