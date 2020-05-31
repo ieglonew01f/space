@@ -82,6 +82,10 @@
     top: 1px;
 }
 
+.feed-container .feed-content {
+    white-space: pre-line;
+}
+
 .action-bar button.icon-btn:hover {
     background: #365779;
     -webkit-transition: background-color 200ms linear;

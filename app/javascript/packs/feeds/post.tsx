@@ -105,7 +105,7 @@ export class PostCard extends React.Component<Post.IProps, Post.IState> {
               </Popconfirm>
             </div>
             <div className="content">
-              <p>
+              <p className="feed-content">
                 {post.content}
               </p>
 
