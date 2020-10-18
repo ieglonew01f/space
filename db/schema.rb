@@ -10,46 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_25_113309) do
+ActiveRecord::Schema.define(version: 2020_05_25_082825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "conversations", force: :cascade do |t|
-    t.string "uuid"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "messages", force: :cascade do |t|
-    t.string "message"
-    t.integer "by_id"
-    t.integer "for_id"
-    t.boolean "seen"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "uuid"
-    t.integer "conversation_id"
-  end
-
-  create_table "post_likes", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "post_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "posts", force: :cascade do |t|
-    t.string "uuid"
-    t.string "content"
-    t.string "content_type"
-    t.text "content_meta"
-    t.integer "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "image"
-    t.integer "post_likes_count"
-  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
