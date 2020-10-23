@@ -23,7 +23,8 @@ export class WeekDays extends React.Component<IProps> {
     const { currentWeek } = this.context.calState;
     for (let i = 0; i < currentWeek.length; i++) {
       const day = currentWeek[i];
-      const isCurrentDay: boolean = this.utils.getCurrentDate() === day.format('DD MM YYYY');
+      const isCurrentDay: boolean =
+        this.utils.getCurrentDate() === day.format('DD MM YYYY');
       days.push(
         <li key={i}>
           <Day current={isCurrentDay} day={day} />

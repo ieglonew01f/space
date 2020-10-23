@@ -40,7 +40,12 @@ export class ControlBar extends React.Component {
         <IconButton onClick={this.previousWeek} aria-label="forward">
           <ArrowBackIosIcon fontSize="small" />
         </IconButton>
-        <Button onClick={this.currentWeek} variant="outlined" size="medium" color="primary">
+        <Button
+          onClick={this.currentWeek}
+          variant="outlined"
+          size="medium"
+          color="primary"
+        >
           Today
         </Button>
         <IconButton onClick={this.nextWeek} aria-label="backwards">
