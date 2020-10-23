@@ -1,7 +1,137 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
 
 body {
-    background: #16202c;
-    color: #FFF;
     font-family: 'Nunito', sans-serif;
+    background: #f5f5f5;
+}
+
+.main-container {
+    background: #FFF;
+    border-radius: 10px;
+    margin: 0 0 30px 50px;
+    padding: 25px 0 0 0;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+}
+
+ul li .day-container {
+    margin: 0 10px;
+    padding: 15px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+ul li .day-container:hover {
+    background: #f7f7f7;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+.day {
+    color: #a7a3a3;
+}
+
+.day.active,
+.date.active {
+    color: #5a43be;
+}
+
+.date {
+    font-weight: bold;
+    color: black;
+    font-size: 27px;
+}
+
+.day-inner, .day-events-summary {
+    display: inline-block;
+}
+
+.day-inner {
+    vertical-align: top;
+}
+
+.day-inner {
+    margin-right: 10px;
+    border-right: 1px solid #d6d6d6;
+    padding-right: 20px;
+    padding: 5px 20px;
+}
+
+.events {
+    color: #444444;
+}
+
+.starting-at {
+    color: #a6a3a3;
+}
+
+.hours {
+    display: inline-block;
+    vertical-align: top;
+    color: #a6a3a3;
+}
+
+.event.card {
+    margin: 0 10px 0px 10px;
+    padding: 15px 20px;
+    border-radius: 12px;
+    display: inline-block;
+    background: #ecf6ff;
+    display: inline-block;
+    vertical-align: top;
+    width: 280px;
+    color: #1f5ab1;
+}
+
+.event.card .title {
+    font-weight: bold;
+    font-size: 21px;
+}
+
+.event.card .starting {
+    color: #abaaaa;
+    font-size: 14px;
+}
+
+.event.card .time {
+    font-weight: bold;
+}
+
+.event.card.new {
+    font-weight: bold;
+    cursor: pointer;
+    color: inherit;
+    background: #f7f7f7;
+}
+
+.event.card.new:hover {
+    background: #ecf6ff;
+}
+
+.control-bar {
+    margin: 0 0 30px 50px;
+}
+
+.current-month {
+    display: inline-block;
+    margin-left: 15px;
+    font-weight: bold;
+    font-size: 20px;
+    top: 2px;
+    position: relative;
+    color: #545454;
+}
+
+.day-container.current {
+    background: #ecf6ff;
+}
+
+.day-container.current:hover {
+    background: #ecf6ff;
 }

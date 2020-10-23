@@ -6,9 +6,7 @@ class User < ApplicationRecord
 
   devise :omniauthable, omniauth_providers: [:google_oauth2]
 
-  has_many :posts
   mount_uploader :avatar, AvatarUploader
-  has_and_belongs_to_many :conversations, dependent: :destroy
 
   def self.from_omniauth(access_token)
     data = access_token.info
@@ -24,24 +22,5 @@ class User < ApplicationRecord
         )
     end
     user
-  end
-
-  def appear
-    self.status = "online"
-    self.save!
-  end
-
-  def disappear
-    self.status = "offline"
-    self.save!
-  end
-
-  def away
-    self.status = "away"
-    self.save!
-  end
-
-  def is_admin?
-    self.user_role == "admin"
   end
 end

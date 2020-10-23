@@ -3,6 +3,8 @@
   "private": true,
   "dependencies": {
     "@babel/preset-react": "^7.9.4",
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
@@ -12,10 +14,10 @@
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
     "actioncable": "^5.2.4-3",
-    "antd": "^4.2.4",
     "axios": "^0.19.2",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "howler": "^2.2.0",
+    "moment": "^2.29.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-actioncable-provider": "^2.0.0",
@@ -26,8 +28,16 @@
     "turbolinks": "^5.2.0",
     "typescript": "^3.9.2"
   },
+  "scripts": {
+    "lint": "tslint app/javascript/packs/**/*.ts{,x}"
+  },
   "version": "0.1.0",
   "devDependencies": {
+    "prettier": "^2.1.2",
+    "tslint": "^6.1.3",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^2.3.0",
+    "tslint-react": "^5.0.0",
     "webpack-dev-server": "^3.11.0"
   }
 }
