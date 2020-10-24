@@ -23,7 +23,7 @@ export class WeekDays extends React.Component<IProps> {
     const { currentWeek, currentDay } = this.context.calState;
 
     currentWeek.forEach((day, i) => {
-      const isCurrentDay: boolean = currentDay === day.format('DD MM YYYY');
+      const isCurrentDay: boolean = currentDay === day.format('DD-MM-YYYY');
       days.push(
         <li key={i}>
           <Day current={isCurrentDay} day={day} />

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import ContentLoader from 'react-content-loader';
+import AddBoxIcon from '@material-ui/icons/AddBox';
 import { CalenderContext } from '../context';
 
 export const LoadingEvent = (props) => {
@@ -27,18 +28,12 @@ export const LoadingEvent = (props) => {
   );
 };
 
-export const EmptyEvent = (props) => {
+export const EmptyEvent = () => {
   return (
-    <li>
-      <div className="events">
-        <div className="hours">
-          <span>2 AM</span>
-        </div>
-        <div className="event card new">
-          <span>Add New Event</span>
-        </div>
-      </div>
-    </li>
+    <div onClick={} className="event card new">
+      <AddBoxIcon color="primary" />
+      <span>New Event</span>
+    </div>
   );
 };
 
@@ -54,12 +49,17 @@ export class Event extends React.Component<IProps, IState> {
   }
 
   render() {
-    const { events, loading } = this.context.calState;
+    const { events, loading, currentDate } = this.context.calState;
+    const { time } = this.props;
     let eventCard;
+
+    const currentEvent = events.filter((event) => event.start_time === time);
 
     if (loading) {
       eventCard = <LoadingEvent />;
-    } else {
+    }
+
+    if (currentEvent.length !== 0) {
       eventCard = (
         <div className="event card">
           <div className="title">Game Shop</div>
@@ -67,13 +67,15 @@ export class Event extends React.Component<IProps, IState> {
           <div className="time">10 - 12 PM</div>
         </div>
       );
+    } else {
+      eventCard = <EmptyEvent />;
     }
 
     return (
       <li>
         <div className="events">
           <div className="hours">
-            <span>{this.props.time}</span>
+            <span>{time}</span>
           </div>
           {eventCard}
         </div>
@@ -83,20 +85,3 @@ export class Event extends React.Component<IProps, IState> {
 }
 
 Event.contextType = CalenderContext;
-
-// export const Event = (props) => {
-//   return (
-//     <li>
-//       <div className="events">
-//         <div className="hours">
-//           <span>{props.time}</span>
-//         </div>
-//         <div className="event card">
-//           <div className="title">Game Shop</div>
-//           <div className="starting">Starting in 5 min</div>
-//           <div className="time">10 - 12 PM</div>
-//         </div>
-//       </div>
-//     </li>
-//   );
-// };

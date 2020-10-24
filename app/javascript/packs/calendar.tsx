@@ -9,6 +9,7 @@ import { Hourly } from './hourly/hourly';
 import { CalenderContext } from './context';
 import { axios } from './common/constants';
 import { IUtils, Utils } from './utils/utils';
+import { AddEventDialog } from './hourly/addevent';
 
 export interface IProps {}
 
@@ -18,6 +19,7 @@ export interface ICalState {
   numWeek: number;
   loading: boolean;
   currentDay: string;
+  addNewDialogOpen: boolean;
 }
 
 export interface IState {
@@ -38,6 +40,7 @@ export class Calendar extends React.Component<IProps, IState> {
         numWeek: 1,
         loading: true,
         currentDay: this.utils.getCurrentDate(),
+        addNewDialogOpen: false,
       },
       setContext: (key: string, val: any) => {
         const { calState } = this.state;
@@ -51,8 +54,9 @@ export class Calendar extends React.Component<IProps, IState> {
 
   async componentDidMount() {
     const { calState } = this.state;
+    const { currentDay } = calState;
 
-    const resp = await axios.get('/events/');
+    const resp = await axios.get(`/events/${currentDay}`);
 
     calState.loading = false;
     calState.events = resp.data;
@@ -72,6 +76,7 @@ export class Calendar extends React.Component<IProps, IState> {
               <Hourly />
             </Grid>
           </Grid>
+          <AddEventDialog />
         </Container>
       </CalenderContext.Provider>
     );

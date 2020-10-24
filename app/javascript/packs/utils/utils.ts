@@ -68,6 +68,6 @@ export class Utils implements IUtils {
   };
 
   getCurrentDate = (): string => {
-    return moment().format('DD MM YYYY');
+    return moment().format('DD-MM-YYYY');
   };
 }
