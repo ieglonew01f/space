@@ -6,6 +6,7 @@ export interface IUtils {
   getPrevWeek(nThWeek: number): any[];
   currentMonthAndYear(day: any): string;
   getCurrentDate(): string;
+  timeRange(): string[];
 }
 
 export class Utils implements IUtils {
@@ -55,6 +56,15 @@ export class Utils implements IUtils {
 
       return monthAndYearString;
     }
+  };
+
+  timeRange = (): string[] => {
+    const items: string[] = [];
+    Array.from(Array(24)).forEach((val, index) => {
+      items.push(moment({ hour: index }).format('h A'));
+    });
+
+    return items;
   };
 
   getCurrentDate = (): string => {

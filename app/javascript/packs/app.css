@@ -135,3 +135,12 @@ ul li {
 .day-container.current:hover {
     background: #ecf6ff;
 }
+
+.hourly {
+    overflow-y: scroll;
+    height: 750px;
+}
+
+.hours {
+    width: 50px;
+}

@@ -20,17 +20,17 @@ export class WeekDays extends React.Component<IProps> {
 
   days(): Element[] {
     const days = [];
-    const { currentWeek } = this.context.calState;
-    for (let i = 0; i < currentWeek.length; i++) {
-      const day = currentWeek[i];
-      const isCurrentDay: boolean =
-        this.utils.getCurrentDate() === day.format('DD MM YYYY');
+    const { currentWeek, currentDay } = this.context.calState;
+
+    currentWeek.forEach((day, i) => {
+      const isCurrentDay: boolean = currentDay === day.format('DD MM YYYY');
       days.push(
         <li key={i}>
           <Day current={isCurrentDay} day={day} />
         </li>
       );
-    }
+    });
+
     return days;
   }
 

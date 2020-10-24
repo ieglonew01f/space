@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :events
   mount RailsAdmin::Engine => '/super_admin', as: 'rails_admin'
   root 'home#index'
   

@@ -7,13 +7,17 @@ import { ControlBar } from './common/controlbar';
 import { WeekDays } from './weeks/weekdays';
 import { Hourly } from './hourly/hourly';
 import { CalenderContext } from './context';
+import { axios } from './common/constants';
+import { IUtils, Utils } from './utils/utils';
 
-export interface IProps {};
+export interface IProps {}
 
 export interface ICalState {
   currentWeek: any[];
   events: any[];
   numWeek: number;
+  loading: boolean;
+  currentDay: string;
 }
 
 export interface IState {
@@ -24,11 +28,16 @@ export interface IState {
 export class Calendar extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
+
+    this.utils = new Utils();
+
     this.state = {
       calState: {
         currentWeek: [],
         events: [],
         numWeek: 1,
+        loading: true,
+        currentDay: this.utils.getCurrentDate(),
       },
       setContext: (key: string, val: any) => {
         const { calState } = this.state;
@@ -36,6 +45,18 @@ export class Calendar extends React.Component<IProps, IState> {
         this.setState({ calState });
       },
     };
+  }
+
+  readonly utils: IUtils;
+
+  async componentDidMount() {
+    const { calState } = this.state;
+
+    const resp = await axios.get('/events/');
+
+    calState.loading = false;
+    calState.events = resp.data;
+    this.setState({ calState });
   }
 
   render() {
