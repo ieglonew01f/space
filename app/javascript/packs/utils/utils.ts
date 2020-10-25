@@ -1,5 +1,8 @@
 import moment from 'moment';
 
+/**
+ * Utils Interface
+ */
 export interface IUtils {
   getCurrentWeek(): any[];
   getNextWeek(nThWeek: number): any[];
@@ -11,7 +14,14 @@ export interface IUtils {
   timeToMachineReadable(time: string): string;
 }
 
+/**
+ * Utils Class
+ */
 export class Utils implements IUtils {
+  /**
+   * Returns next week days based on given
+   * week number
+   */
   getNextWeek = (nThWeek = 1): any[] => {
     const weekDates = [];
 
@@ -22,6 +32,10 @@ export class Utils implements IUtils {
     return weekDates;
   };
 
+  /**
+   * Returns previous week days based on given
+   * week number
+   */
   getPrevWeek = (nThWeek = 1): any[] => {
     const weekDates = [];
 
@@ -32,6 +46,9 @@ export class Utils implements IUtils {
     return weekDates;
   };
 
+  /**
+   * Returns the current week days
+   */
   getCurrentWeek = (): any[] => {
     const weekDates = [];
 
@@ -42,6 +59,9 @@ export class Utils implements IUtils {
     return weekDates;
   };
 
+  /**
+   * Returns the current month and year as string
+   */
   currentMonthAndYear = (week: any): string => {
     if (week.length > 0) {
       const startMonth = week[0].format('MMMM');
@@ -60,6 +80,9 @@ export class Utils implements IUtils {
     }
   };
 
+  /**
+   * Returns an array of 24 hours
+   */
   timeRange = (): string[] => {
     const items: string[] = [];
     Array.from(Array(24)).forEach((val, index) => {
@@ -69,14 +92,23 @@ export class Utils implements IUtils {
     return items;
   };
 
+  /**
+   * Converts time to human readable format eg: 04:AM
+   */
   timeToHumanReadable = (time): string => {
     return moment(time, 'hh A').format('hh A');
   };
 
+  /**
+   * Converts time to machine readable format eg: 13:00
+   */
   timeToMachineReadable = (time): string => {
     return moment(time, 'hh:mm').format('hh:mm');
   };
 
+  /**
+   * Returns current date
+   */
   getCurrentDate = (): string => {
     return moment().format('DD-MM-YYYY');
   };

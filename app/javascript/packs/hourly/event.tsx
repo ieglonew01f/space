@@ -44,10 +44,11 @@ export class Event extends React.Component<IProps, IState> {
   render() {
     const { events, loading, currentEvent } = this.context.calState;
     const { time } = this.props;
+    const { utils } = this;
     let eventCard;
 
     const thisEvent: ICurrentEvent = events.find(
-      (ev) => this.utils.timeToHumanReadable(ev.start_time) === time
+      (ev) => utils.timeToHumanReadable(ev.start_time) === time
     );
 
     if (loading) {
@@ -65,7 +66,8 @@ export class Event extends React.Component<IProps, IState> {
         >
           <div className="title">{thisEvent.title}</div>
           <div className="time">
-            {thisEvent.start_time} - {thisEvent.end_time}
+            {utils.timeToHumanReadable(thisEvent.start_time)} -{' '}
+            {utils.timeToHumanReadable(thisEvent.end_time)}
           </div>
         </div>
       );

@@ -1,13 +1,16 @@
 import * as React from 'react';
 import CalendarTodayTwoToneIcon from '@material-ui/icons/CalendarTodayTwoTone';
 import QueryBuilderIcon from '@material-ui/icons/QueryBuilder';
-import TimelapseIcon from '@material-ui/icons/Timelapse';
 import { CalenderContext } from '../context';
+import { IUtils, Utils } from '../utils/utils';
 
 export class Summary extends React.Component {
   constructor(props) {
     super(props);
+    this.utils = new Utils();
   }
+
+  readonly utils: IUtils;
 
   render() {
     const { currentEvent } = this.context.calState;
@@ -34,7 +37,7 @@ export class Summary extends React.Component {
               <QueryBuilderIcon />
             </span>
             <span className="item">
-              {`${currentEvent.start_time} - ${currentEvent.end_time}`}
+              {`${this.utils.timeToHumanReadable(currentEvent.start_time)} - ${this.utils.timeToHumanReadable(currentEvent.end_time)}`}
               <small>Time</small>
             </span>
           </div>

@@ -15,6 +15,9 @@ import { ICurrentEvent } from './hourly/event';
 
 export interface IProps {}
 
+/**
+ * Interface for calendar state
+ */
 export interface ICalState {
   currentWeek: any[];
   events: any[];
@@ -32,6 +35,9 @@ export interface IState {
   setContext(key: string, val: any): void;
 }
 
+/**
+ * Calendar Main App
+ */
 export class Calendar extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);

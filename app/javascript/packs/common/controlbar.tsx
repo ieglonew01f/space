@@ -7,6 +7,9 @@ import { IUtils, Utils } from '../utils/utils';
 import { CalenderContext } from '../context';
 import { axios } from './constants';
 
+/**
+ * Control bar
+ */
 export class ControlBar extends React.Component {
   constructor(props) {
     super(props);
@@ -15,6 +18,9 @@ export class ControlBar extends React.Component {
 
   readonly utils: IUtils;
 
+  /**
+   * Skips to current week
+   */
   currentWeek = async () => {
     const currentDay = this.utils.getCurrentDate();
     const week = this.utils.getCurrentWeek();
@@ -29,6 +35,9 @@ export class ControlBar extends React.Component {
     this.context.setContext('events', resp.data);
   };
 
+  /**
+   * Skips to next week
+   */
   nextWeek = () => {
     const { numWeek } = this.context.calState;
     const week = this.utils.getNextWeek(numWeek);
@@ -36,6 +45,9 @@ export class ControlBar extends React.Component {
     this.context.setContext('numWeek', numWeek + 1);
   };
 
+  /**
+   * Skips to previous week
+   */
   previousWeek = () => {
     const { numWeek } = this.context.calState;
     const week = this.utils.getPrevWeek(numWeek);
