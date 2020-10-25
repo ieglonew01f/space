@@ -59,7 +59,7 @@ export class Event extends React.Component<IProps, IState> {
           // tslint:disable-next-line: jsx-no-lambda
           onClick={() => this.openSummary(thisEvent)}
           className={
-            thisEvent.id === currentEvent.id
+            currentEvent && thisEvent.id === currentEvent.id
               ? 'event card active'
               : 'event card'
           }
