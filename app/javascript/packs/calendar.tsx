@@ -71,6 +71,10 @@ export class Calendar extends React.Component<IProps, IState> {
 
   readonly utils: IUtils;
 
+  /**
+   * Load the current day events
+   * when app is loaded
+   */
   async componentDidMount() {
     const { calState } = this.state;
     const { currentDay } = calState;

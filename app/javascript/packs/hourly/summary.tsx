@@ -14,36 +14,42 @@ export class Summary extends React.Component {
 
   render() {
     const { currentEvent } = this.context.calState;
-    return (
-      <div className="summary">
-        <div className="title">
-          <h3>{currentEvent.title}</h3>
-        </div>
-        <div className="description">
-          <p>{currentEvent.desc}</p>
-        </div>
-        <div className="details">
-          <div className="item-block">
-            <span className="icon">
-              <CalendarTodayTwoToneIcon />
-            </span>
-            <span className="item">
-              {currentEvent.date}
-              <small>Date</small>
-            </span>
+    if (currentEvent) {
+      return (
+        <div className="summary">
+          <div className="title">
+            <h3>{currentEvent.title}</h3>
           </div>
-          <div className="item-block">
-            <span className="icon">
-              <QueryBuilderIcon />
-            </span>
-            <span className="item">
-              {`${this.utils.timeToHumanReadable(currentEvent.start_time)} - ${this.utils.timeToHumanReadable(currentEvent.end_time)}`}
-              <small>Time</small>
-            </span>
+          <div className="description">
+            <p>{currentEvent.desc}</p>
+          </div>
+          <div className="details">
+            <div className="item-block">
+              <span className="icon">
+                <CalendarTodayTwoToneIcon />
+              </span>
+              <span className="item">
+                {currentEvent.date}
+                <small>Date</small>
+              </span>
+            </div>
+            <div className="item-block">
+              <span className="icon">
+                <QueryBuilderIcon />
+              </span>
+              <span className="item">
+                {`${this.utils.timeToHumanReadable(
+                  currentEvent.start_time
+                )} - ${this.utils.timeToHumanReadable(currentEvent.end_time)}`}
+                <small>Time</small>
+              </span>
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return '';
+    }
   }
 }
 
