@@ -1,3 +1,3 @@
 object false
 object @event
-attributes :id, :title, :start_time, :end_time, :date
+attributes :id, :desc, :title, :start_time, :end_time, :date

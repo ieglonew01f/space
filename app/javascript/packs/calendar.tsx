@@ -10,6 +10,8 @@ import { CalenderContext } from './context';
 import { axios } from './common/constants';
 import { IUtils, Utils } from './utils/utils';
 import { AddEventDialog } from './hourly/addevent';
+import { Summary } from './hourly/summary';
+import { ICurrentEvent } from './hourly/event';
 
 export interface IProps {}
 
@@ -20,6 +22,9 @@ export interface ICalState {
   loading: boolean;
   currentDay: string;
   addNewDialogOpen: boolean;
+  startTime: string;
+  endTime: string;
+  currentEvent: ICurrentEvent;
 }
 
 export interface IState {
@@ -41,6 +46,14 @@ export class Calendar extends React.Component<IProps, IState> {
         loading: true,
         currentDay: this.utils.getCurrentDate(),
         addNewDialogOpen: false,
+        startTime: '00:00',
+        endTime: '00:00',
+        currentEvent: {
+          id: null,
+          title: '',
+          start_time: '',
+          end_time: '',
+        },
       },
       setContext: (key: string, val: any) => {
         const { calState } = this.state;
@@ -60,6 +73,7 @@ export class Calendar extends React.Component<IProps, IState> {
 
     calState.loading = false;
     calState.events = resp.data;
+    calState.currentEvent = calState.events[0];
     this.setState({ calState });
   }
 
@@ -68,12 +82,15 @@ export class Calendar extends React.Component<IProps, IState> {
       <CalenderContext.Provider value={this.state}>
         <Container className="main-container" maxWidth="md">
           <ControlBar />
-          <Grid container={true} spacing={3}>
-            <Grid item={true} xs={6}>
+          <Grid container={true} spacing={2}>
+            <Grid item={true} xs={2}>
               <WeekDays />
             </Grid>
             <Grid item={true} xs={6}>
               <Hourly />
+            </Grid>
+            <Grid item={true} xs={4}>
+              <Summary />
             </Grid>
           </Grid>
           <AddEventDialog />

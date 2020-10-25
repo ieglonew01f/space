@@ -7,6 +7,8 @@ export interface IUtils {
   currentMonthAndYear(day: any): string;
   getCurrentDate(): string;
   timeRange(): string[];
+  timeToHumanReadable(time: string): string;
+  timeToMachineReadable(time: string): string;
 }
 
 export class Utils implements IUtils {
@@ -61,10 +63,18 @@ export class Utils implements IUtils {
   timeRange = (): string[] => {
     const items: string[] = [];
     Array.from(Array(24)).forEach((val, index) => {
-      items.push(moment({ hour: index }).format('h A'));
+      items.push(moment({ hour: index }).format('hh A'));
     });
 
     return items;
+  };
+
+  timeToHumanReadable = (time): string => {
+    return moment(time, 'hh A').format('hh A');
+  };
+
+  timeToMachineReadable = (time): string => {
+    return moment(time, 'hh:mm').format('hh:mm');
   };
 
   getCurrentDate = (): string => {

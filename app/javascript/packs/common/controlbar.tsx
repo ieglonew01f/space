@@ -5,6 +5,7 @@ import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import Button from '@material-ui/core/Button';
 import { IUtils, Utils } from '../utils/utils';
 import { CalenderContext } from '../context';
+import { axios } from './constants';
 
 export class ControlBar extends React.Component {
   constructor(props) {
@@ -14,10 +15,18 @@ export class ControlBar extends React.Component {
 
   readonly utils: IUtils;
 
-  currentWeek = () => {
+  currentWeek = async () => {
+    const currentDay = this.utils.getCurrentDate();
     const week = this.utils.getCurrentWeek();
+
     this.context.setContext('currentWeek', week);
     this.context.setContext('numWeek', 1);
+    this.context.setContext('currentDay', currentDay);
+
+    this.context.setContext('loading', true);
+    const resp = await axios.get(`/events/${currentDay}`);
+    this.context.setContext('loading', false);
+    this.context.setContext('events', resp.data);
   };
 
   nextWeek = () => {

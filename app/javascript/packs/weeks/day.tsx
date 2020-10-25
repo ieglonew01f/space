@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { axios } from '../common/constants';
 import { CalenderContext } from '../context';
+import { ICurrentEvent } from '../hourly/event';
+import 'animate.css';
 
 export interface IProps {
   day: any;
@@ -23,7 +25,7 @@ export class Day extends React.Component<IProps, IState> {
     }
 
     const resp = await axios.get(`/events/${day}`);
-    console.log(resp);
+    this.context.setContext('events', resp.data);
     this.context.setContext('currentDay', day);
   };
 
@@ -34,16 +36,14 @@ export class Day extends React.Component<IProps, IState> {
       <div
         onClick={this.selectDay}
         className={
-          this.props.current ? 'day-container current' : 'day-container'
+          this.props.current
+            ? 'day-container current animate__animated animate__headShake'
+            : 'day-container'
         }
       >
         <div className="day-inner">
           <div className="day">{day.format('ddd')}</div>
           <div className="date">{day.format('DD')}</div>
-        </div>
-        <div className="day-events-summary">
-          <div className="events">5 Events</div>
-          <div className="starting-at">Starting at 3PM</div>
         </div>
       </div>
     );

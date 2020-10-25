@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { EmptyEvent, Event } from './event';
+import { Event } from './event';
 import { IUtils, Utils } from '../utils/utils';
 import { CalenderContext } from '../context';
 
