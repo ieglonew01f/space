@@ -184,6 +184,13 @@ ul li {
     border-radius: 12px;
 }
 
+.event.card svg {
+    height: 60px;
+    position: relative;
+    right: 47px;
+    bottom: 2px;
+}
+
 .summary .h3 {
     margin: 0;
 }
