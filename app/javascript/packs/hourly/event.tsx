@@ -99,6 +99,7 @@ export const LoadingEvent = (props) => {
         backgroundColor="#95acd0"
         foregroundColor="#427bd1"
         {...props}
+        className="svg-loader"
       >
         <rect x="0" y="0" rx="3" ry="3" width="67" height="11" />
         <rect x="76" y="0" rx="3" ry="3" width="140" height="11" />

@@ -184,7 +184,7 @@ ul li {
     border-radius: 12px;
 }
 
-.event.card svg {
+.event.card svg.svg-loader {
     height: 60px;
     position: relative;
     right: 47px;
