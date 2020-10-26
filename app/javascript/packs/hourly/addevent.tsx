@@ -83,8 +83,6 @@ export class AddEventDialog extends React.Component<IProps, IState> {
     const utils = this.utils;
     const machineEndTime = utils.incrementHr(endTime, 1);
 
-    console.log(machineEndTime);
-
     return (
       <Dialog open={addNewDialogOpen} onClose={this.handleClose}>
         <DialogTitle>Add a new event</DialogTitle>

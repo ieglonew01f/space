@@ -83,6 +83,7 @@ ul li {
     width: 280px;
     margin-left: 10px;
     cursor: pointer;
+    height: 55px;
 }
 
 .event.card.active {
@@ -114,7 +115,16 @@ ul li {
     font-weight: bold;
     cursor: pointer;
     color: inherit;
-    background: #f7f7f7;
+    background: white;
+    border-bottom: 1px solid #e6e2e2;
+}
+
+.event.card.new .add-event-inner {
+    visibility: hidden;
+}
+
+.event.card.new:hover .add-event-inner {
+    visibility: visible;
 }
 
 .event.card.new:hover {
@@ -122,7 +132,7 @@ ul li {
 }
 
 .control-bar {
-    margin: 0 0 30px 50px;
+    margin: 0 0 30px 20px;
 }
 
 .current-month {
@@ -169,7 +179,7 @@ ul li {
 }
 
 .summary {
-    background: #f7f7f7;
+    background: #ecf6ff;
     padding: 15px 20px 10px;
     border-radius: 12px;
 }

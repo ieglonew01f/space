@@ -116,8 +116,10 @@ export const LoadingEvent = (props) => {
 export const EmptyEvent = (props) => {
   return (
     <div onClick={props.addEvent} className="event card new">
-      <AddBoxIcon color="primary" />
-      <span>New Event</span>
+      <div className="add-event-inner">
+        <AddBoxIcon color="primary" />
+        <span>New Event</span>
+      </div>
     </div>
   );
 };

@@ -1,9 +1,5 @@
 # README
+### Last9 Calendar
+    - React + TS + Rails
 
-REACT + TS + WEBPACKER + RAILS 6 Boilerplate
 
-install postgresql
-brew install postgresql
-
-Start Server
-foreman start
