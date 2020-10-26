@@ -33,7 +33,7 @@ export class Event extends React.Component<IProps, IState> {
       'startTime',
       this.utils.timeToMachineReadable(time)
     );
-    this.context.setContext('endTime', this.utils.timeToMachineReadable(time));
+    this.context.setContext('endTime', this.utils.incrementHr(time, 1));
     this.context.setContext('addNewDialogOpen', true);
   };
 
