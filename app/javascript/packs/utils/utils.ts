@@ -12,6 +12,7 @@ export interface IUtils {
   timeRange(): string[];
   timeToHumanReadable(time: string): string;
   timeToMachineReadable(time: string): string;
+  incrementHr(time: string, inc: number): string;
 }
 
 /**
@@ -96,14 +97,14 @@ export class Utils implements IUtils {
    * Converts time to human readable format eg: 04:AM
    */
   timeToHumanReadable = (time): string => {
-    return moment(time, 'hh A').format('hh A');
+    return moment(time, 'HH:mm').format('hh A');
   };
 
   /**
    * Converts time to machine readable format eg: 13:00
    */
-  timeToMachineReadable = (time): string => {
-    return moment(time, 'hh:mm').format('hh:mm');
+  timeToMachineReadable = (time: string): string => {
+    return moment(time, 'hh A').format('HH:mm');
   };
 
   /**
@@ -111,5 +112,12 @@ export class Utils implements IUtils {
    */
   getCurrentDate = (): string => {
     return moment().format('DD-MM-YYYY');
+  };
+
+  /**
+   * Returns hour incremented by value
+   */
+  incrementHr = (time: string, inc: number): string => {
+    return moment(time, 'HH:mm').add(inc, 'hours').format('HH:mm');
   };
 }

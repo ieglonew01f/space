@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { CalenderContext } from '../context';
+import { IUtils, Utils } from '../utils/utils';
 
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -24,7 +25,11 @@ export class AddEventDialog extends React.Component<IProps, IState> {
       desc: '',
       error: false,
     };
+
+    this.utils = new Utils();
   }
+
+  readonly utils: IUtils;
 
   handleClose = () => {
     this.context.setContext('addNewDialogOpen', false);
@@ -75,6 +80,10 @@ export class AddEventDialog extends React.Component<IProps, IState> {
 
   render() {
     const { addNewDialogOpen, startTime, endTime } = this.context.calState;
+    const utils = this.utils;
+    const machineEndTime = utils.incrementHr(endTime, 1);
+
+    console.log(machineEndTime);
 
     return (
       <Dialog open={addNewDialogOpen} onClose={this.handleClose}>
@@ -121,7 +130,7 @@ export class AddEventDialog extends React.Component<IProps, IState> {
               label="End At"
               type="time"
               className="time"
-              defaultValue={endTime}
+              defaultValue={machineEndTime}
               InputLabelProps={{
                 shrink: true,
               }}
