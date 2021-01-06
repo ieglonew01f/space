@@ -15,7 +15,7 @@
     "@types/react-dom": "^16.9.8",
     "actioncable": "^5.2.4-3",
     "animate.css": "^4.1.1",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "howler": "^2.2.0",
     "moment": "^2.29.1",
