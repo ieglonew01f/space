@@ -18,7 +18,7 @@
     "axios": "^0.19.2",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "howler": "^2.2.0",
-    "moment": "^2.29.1",
+    "moment": "^2.29.4",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-actioncable-provider": "^2.0.0",
